@@ -56,14 +56,8 @@ public class game extends JFrame {
 		label.setBounds(15, 143, 62, 18);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(".\\img\\board.PNG"));
-
-		label_1.setBounds(25, 88, 476, 448);
-		contentPane.add(label_1);
-		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(".\\img\\do.PNG"));
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\workspace\\Yutnori\\img\\do.PNG"));
 		lblNewLabel_1.setBounds(583, 77, 171, 252);
 		contentPane.add(lblNewLabel_1);
 		
@@ -72,6 +66,17 @@ public class game extends JFrame {
 		button.setFont(new Font("µ¸¿ò", Font.BOLD, 30));
 		button.setBounds(522, 349, 285, 64);
 		contentPane.add(button);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBackground(new Color(0, 102, 255));
+		btnNewButton.setBounds(442, 476, 45, 52);
+		contentPane.add(btnNewButton);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon("C:\\workspace\\Yutnori\\img\\board.PNG"));
+		
+				label_1.setBounds(25, 88, 476, 448);
+				contentPane.add(label_1);
 	}
 
 }
