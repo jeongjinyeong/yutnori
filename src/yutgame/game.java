@@ -59,7 +59,7 @@ public class game extends JFrame {
 		JButton button = new JButton("\uB358\uC9C0\uAE30");
 		button.setBackground(UIManager.getColor("Button.focus"));
 		button.setFont(new Font("µ¸¿ò", Font.BOLD, 30));
-		button.setBounds(730, 699, 213, 64);
+		button.setBounds(729, 625, 213, 64);
 		contentPane.add(button);
 		
 		JLabel label_1 = new JLabel("");
