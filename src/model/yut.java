@@ -2,7 +2,7 @@ package model;
 import java.util.Random;
 
 
-public class yut {
+public class Yut {
 	int state;
 	
 	public int throwYut() {

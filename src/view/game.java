@@ -1,5 +1,5 @@
 package view;
-
+import model.Yut;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -24,6 +24,11 @@ public class game extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		Yut yut = new Yut();
+		int state = 0;
+		state = yut.throwYut();
+		System.out.println(state);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
