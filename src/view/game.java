@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class game extends JFrame {
 
@@ -41,15 +43,15 @@ public class game extends JFrame {
 	 */
 	public game() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1032, 922);
+		setBounds(100, 100, 1000, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\uC737\uB180\uC774");
-		lblNewLabel.setFont(new Font("µ∏øÚ", Font.BOLD, 21));
-		lblNewLabel.setBounds(406, 27, 133, 64);
+		lblNewLabel.setFont(new Font("¬µ¬∏¬ø√≤", Font.BOLD, 21));
+		lblNewLabel.setBounds(15, 12, 133, 64);
 		contentPane.add(lblNewLabel);
 		
 		JLabel label = new JLabel("");
@@ -58,53 +60,72 @@ public class game extends JFrame {
 		
 		JButton button = new JButton("\uB358\uC9C0\uAE30");
 		button.setBackground(UIManager.getColor("Button.focus"));
-		button.setFont(new Font("µ∏øÚ", Font.BOLD, 30));
-		button.setBounds(729, 625, 213, 64);
+		button.setFont(new Font("¬µ¬∏¬ø√≤", Font.BOLD, 30));
+		button.setBounds(733, 358, 213, 64);
 		contentPane.add(button);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("C:\\workspace\\Yutnori\\img\\board.PNG"));
+		label_1.setIcon(new ImageIcon("./img/board.PNG"));
 		
-				label_1.setBounds(216, 130, 554, 498);
+				label_1.setBounds(219, 82, 486, 466);
 				contentPane.add(label_1);
 				
-				JLabel lblPlayer = new JLabel("player1");
-				lblPlayer.setBounds(0, 172, 190, 156);
-				contentPane.add(lblPlayer);
-				
-				JLabel lblPlayer_1 = new JLabel("player2");
-				lblPlayer_1.setBounds(0, 399, 190, 156);
+				JLabel lblPlayer_1 = new JLabel("player1");
+				lblPlayer_1.setBounds(15, 50, 200, 120);
 				contentPane.add(lblPlayer_1);
 				
-				JLabel lblPlayer_2 = new JLabel("player3");
-				lblPlayer_2.setBounds(729, 172, 190, 156);
+				JLabel lblPlayer_2 = new JLabel("player2");
+				lblPlayer_2.setBounds(15, 170, 200, 120);
 				contentPane.add(lblPlayer_2);
 				
-				JLabel lblPlayer_3 = new JLabel("player4");
-				lblPlayer_3.setBounds(739, 333, 190, 156);
+				JLabel lblPlayer_3 = new JLabel("player3");
+				lblPlayer_3.setBounds(15, 290, 200, 120);
 				contentPane.add(lblPlayer_3);
 				
-				JLabel lblNewLabel_2 = new JLabel("New label");
-				lblNewLabel_2.setIcon(new ImageIcon("C:\\workspace\\Yutnori\\img\\front.png"));
-				lblNewLabel_2.setBounds(347, 625, 90, 224);
-				contentPane.add(lblNewLabel_2);
+				JLabel lblPlayer_4 = new JLabel("player4");
+				lblPlayer_4.setBounds(15, 410, 200, 120);
+				contentPane.add(lblPlayer_4);
 				
-				JLabel label_2 = new JLabel("New label");
-				label_2.setIcon(new ImageIcon("C:\\workspace\\Yutnori\\img\\backdo.png"));
-				label_2.setBounds(470, 625, 90, 224);
-				contentPane.add(label_2);
+				JButton button_1 = new JButton("ÎèÑ");
+				button_1.setBounds(733, 429, 105, 27);
+				contentPane.add(button_1);
 				
-				JLabel label_3 = new JLabel("New label");
-				label_3.setIcon(new ImageIcon("C:\\workspace\\Yutnori\\img\\front.png"));
-				label_3.setBounds(588, 625, 90, 224);
-				contentPane.add(label_3);
+				JButton button_2 = new JButton("Í∞ú");
+				button_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				button_2.setBounds(841, 429, 105, 27);
+				contentPane.add(button_2);
 				
-				JLabel label_4 = new JLabel("New label");
-				label_4.setIcon(new ImageIcon("C:\\workspace\\Yutnori\\img\\front.png"));
-				label_4.setBounds(226, 625, 90, 224);
-				contentPane.add(label_4);
+				JButton btnNewButton = new JButton("Í±∏");
+				btnNewButton.setBounds(733, 467, 105, 27);
+				contentPane.add(btnNewButton);
+				
+				JButton btnNewButton_1 = new JButton("Ïú∑");
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnNewButton_1.setBounds(841, 467, 105, 27);
+				contentPane.add(btnNewButton_1);
+				
+				JButton btnNewButton_2 = new JButton("Î™®");
+				btnNewButton_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnNewButton_2.setBounds(733, 500, 105, 27);
+				contentPane.add(btnNewButton_2);
+				
+				JButton btnNewButton_3 = new JButton("Î∞±ÎèÑ");
+				btnNewButton_3.setBounds(841, 500, 105, 27);
+				contentPane.add(btnNewButton_3);
+				
+				JLabel lblNewLabel_1 = new JLabel("New label");
+				lblNewLabel_1.setIcon(new ImageIcon("./img/mo.PNG"));
+				lblNewLabel_1.setBounds(733, 92, 213, 230);
+				contentPane.add(lblNewLabel_1);
 	}
 }
-
-
 
