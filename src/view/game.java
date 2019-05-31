@@ -27,10 +27,6 @@ public class game extends JFrame {
 	 */
 	public static void main(String[] args) {
 		
-		Yut yut = new Yut();
-		int state = 0;
-		state = yut.throwYut();
-		System.out.println(state);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
