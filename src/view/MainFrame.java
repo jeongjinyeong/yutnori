@@ -69,15 +69,18 @@ public class MainFrame extends JFrame {
 		contentPane.add(lblHeadLine);
 										
 		JLabel lblResultThrowYut = new JLabel("");
-		lblResultThrowYut.setIcon(new ImageIcon("C:\\workspace\\yutnori\\img\\moe.png"));
+		lblResultThrowYut.setIcon(new ImageIcon("./img/moe.png"));
 		lblResultThrowYut.setBounds(837, 73, 200, 173);
 		contentPane.add(lblResultThrowYut);
 	
 	}
 	
 	public JPanel createBoard() {
+		
 		JPanel panelBoard = new JPanel();
 		panelBoard.setLayout(null);
+		
+
 		
 		JButton btn0 = new JButton("");
 		btn0.setBounds(514, 489, 80, 74);
@@ -195,8 +198,9 @@ public class MainFrame extends JFrame {
 		btn28.setBounds(441, 414, 45, 45);
 		panelBoard.add(btn28);
 		
+		
 		JLabel lblBoard = new JLabel("");
-		lblBoard.setIcon(new ImageIcon("C:\\workspace\\yutnori\\img\\board.PNG"));
+		lblBoard.setIcon(new ImageIcon("./img/board.PNG"));
 		lblBoard.setBounds(0, 0, 605, 568);
 		panelBoard.add(lblBoard);
 		
@@ -254,10 +258,6 @@ public class MainFrame extends JFrame {
 		panelPlayer1.add(lblPlayer1);
 		
 		JButton btnPlayer1wait = new JButton("player1Wait");
-		btnPlayer1wait.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnPlayer1wait.setBounds(5, 25, 88, 67);
 		panelPlayer1.add(btnPlayer1wait);
 		
