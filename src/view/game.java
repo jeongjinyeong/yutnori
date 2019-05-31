@@ -51,6 +51,14 @@ public class game extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JPanel panelPlayerSet = createPlayerSet();
+		panelPlayerSet.setBounds(4, 80, 186, 512);
+		contentPane.add(panelPlayerSet);
+		
+		JPanel panelThrowBtnSet = createThrowSet();
+		panelThrowBtnSet.setBounds(837, 255, 200, 187);
+		contentPane.add(panelThrowBtnSet);
+		
 		JButton btnNewButton_5 = new JButton("New button");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,68 +175,10 @@ public class game extends JFrame {
 		JLabel label = new JLabel("");
 		label.setBounds(15, 143, 62, 18);
 		contentPane.add(label);
-		
-		JButton button = new JButton("\uB358\uC9C0\uAE30");
-		button.setBackground(UIManager.getColor("Button.focus"));
-		button.setFont(new Font("µ¸¿ò", Font.BOLD, 30));
-		button.setBounds(838, 345, 200, 54);
-		contentPane.add(button);
-				
-				JLabel lblPlayer_1 = new JLabel("player1");
-				lblPlayer_1.setBounds(15, 50, 200, 120);
-				contentPane.add(lblPlayer_1);
-				
-				JLabel lblPlayer_2 = new JLabel("player2");
-				lblPlayer_2.setBounds(15, 170, 200, 120);
-				contentPane.add(lblPlayer_2);
-				
-				JLabel lblPlayer_3 = new JLabel("player3");
-				lblPlayer_3.setBounds(15, 290, 200, 120);
-				contentPane.add(lblPlayer_3);
-				
-				JLabel lblPlayer_4 = new JLabel("player4");
-				lblPlayer_4.setBounds(15, 410, 200, 120);
-				contentPane.add(lblPlayer_4);
-				
-				JButton button_1 = new JButton("도");
-				button_1.setBounds(848, 410, 80, 27);
-				contentPane.add(button_1);
-				
-				JButton button_2 = new JButton("개");
-				button_2.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				button_2.setBounds(942, 410, 80, 27);
-				contentPane.add(button_2);
-				
-				JButton btnNewButton = new JButton("걸");
-				btnNewButton.setBounds(848, 442, 80, 27);
-				contentPane.add(btnNewButton);
-				
-				JButton btnNewButton_1 = new JButton("윷");
-				btnNewButton_1.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				btnNewButton_1.setBounds(942, 442, 80, 27);
-				contentPane.add(btnNewButton_1);
-				
-				JButton btnNewButton_2 = new JButton("모");
-				btnNewButton_2.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				btnNewButton_2.setBounds(848, 476, 80, 27);
-				contentPane.add(btnNewButton_2);
-				
-				JButton btnNewButton_3 = new JButton("백도");
-				btnNewButton_3.setBounds(942, 476, 80, 27);
-				contentPane.add(btnNewButton_3);
 				
 				JLabel lblNewLabel_1 = new JLabel("");
 				lblNewLabel_1.setIcon(new ImageIcon("C:\\workspace\\yutnori\\img\\moe.png"));
-				lblNewLabel_1.setBounds(838, 110, 200, 173);
+				lblNewLabel_1.setBounds(837, 73, 200, 173);
 				contentPane.add(lblNewLabel_1);
 						
 						JButton button_3 = new JButton("New button");
@@ -252,6 +202,129 @@ public class game extends JFrame {
 										
 												label_1.setBounds(198, 60, 625, 581);
 												contentPane.add(label_1);
+
+												
+
+
+												
+	
+	}
+	public JPanel createThrowSet() {
+		
+		JPanel panelBtnSetOfThrow = new JPanel();
+		panelBtnSetOfThrow.setLayout(null);
+		
+		JButton buttonThrowYut = new JButton("\uB358\uC9C0\uAE30");
+		buttonThrowYut.setBounds(0, 0, 186, 54);
+		panelBtnSetOfThrow.add(buttonThrowYut);
+		buttonThrowYut.setBackground(UIManager.getColor("Button.focus"));
+		buttonThrowYut.setFont(new Font("µ¸¿ò", Font.BOLD, 30));
+		
+		JButton buttonDo = new JButton("도");
+		buttonDo.setBounds(0, 70, 80, 27);
+		panelBtnSetOfThrow.add(buttonDo);
+		
+		JButton buttonGe = new JButton("개");
+		buttonGe.setBounds(106, 70, 80, 27);
+		panelBtnSetOfThrow.add(buttonGe);
+		
+		JButton buttonGul = new JButton("걸");
+		buttonGul.setBounds(0, 110, 80, 27);
+		panelBtnSetOfThrow.add(buttonGul);
+		
+		JButton buttonYoot = new JButton("윷");
+		buttonYoot.setBounds(106, 110, 80, 27);
+		panelBtnSetOfThrow.add(buttonYoot);
+		
+		JButton buttonMo = new JButton("모");
+		buttonMo.setBounds(0, 150, 80, 27);
+		panelBtnSetOfThrow.add(buttonMo);
+		
+		JButton buttonBackDo = new JButton("백도");
+		buttonBackDo.setBounds(106, 150, 80, 27);
+		panelBtnSetOfThrow.add(buttonBackDo);
+		
+		return panelBtnSetOfThrow;
+		
+	}
+	public JPanel createPlayerSet() {
+		JPanel panelPlayerSet = new JPanel();
+		panelPlayerSet.setLayout(null);
+		
+		JPanel panelPlayer1 = new JPanel();
+		panelPlayer1.setBounds(0, 12, 183, 104);
+		panelPlayerSet.add(panelPlayer1);
+		panelPlayer1.setLayout(null);
+		
+		JLabel lblPlayer1 = new JLabel("player1");
+		lblPlayer1.setBounds(5, 9, 62, 18);
+		panelPlayer1.add(lblPlayer1);
+		
+		JButton btnPlayer1wait = new JButton("player1Wait");
+		btnPlayer1wait.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnPlayer1wait.setBounds(5, 25, 88, 67);
+		panelPlayer1.add(btnPlayer1wait);
+		
+		JLabel lblplayer1Fin = new JLabel("player2Fin");
+		lblplayer1Fin.setBounds(99, 28, 70, 64);
+		panelPlayer1.add(lblplayer1Fin);
+		
+		JPanel panelPlayer2 = new JPanel();
+		panelPlayer2.setBounds(0, 128, 183, 104);
+		panelPlayerSet.add(panelPlayer2);
+		panelPlayer2.setLayout(null);
+		
+		JLabel lblPlayer2 = new JLabel("player2");
+		lblPlayer2.setBounds(5, 9, 62, 18);
+		panelPlayer2.add(lblPlayer2);
+		
+		JButton btnPlayer2wait = new JButton("player2Wait");
+		btnPlayer2wait.setBounds(5, 25, 88, 67);
+		panelPlayer2.add(btnPlayer2wait);
+		
+		JLabel lblplayer2Fin = new JLabel("player2Fin");
+		lblplayer2Fin.setBounds(99, 28, 70, 64);
+		panelPlayer2.add(lblplayer2Fin);
+		
+		JPanel panelPlayer3 = new JPanel();
+		panelPlayer3.setBounds(0, 254, 183, 104);
+		panelPlayerSet.add(panelPlayer3);
+		panelPlayer3.setLayout(null);
+		
+		JLabel lblPlayer3 = new JLabel("player3");
+		lblPlayer3.setBounds(5, 9, 62, 18);
+		panelPlayer3.add(lblPlayer3);
+		
+		JButton btnPlayer3wait = new JButton("player3Wait");
+		btnPlayer3wait.setBounds(5, 25, 88, 67);
+		panelPlayer3.add(btnPlayer3wait);
+		
+		JLabel lblplayer3Fin = new JLabel("player3Fin");
+		lblplayer3Fin.setBounds(99, 28, 70, 64);
+		panelPlayer3.add(lblplayer3Fin);
+		
+		JPanel panelPlayer4 = new JPanel();
+		panelPlayer4.setBounds(0, 385, 183, 104);
+		panelPlayerSet.add(panelPlayer4);
+		panelPlayer4.setLayout(null);
+		
+		JLabel lblPlayer4 = new JLabel("player4");
+		lblPlayer4.setBounds(5, 9, 62, 18);
+		panelPlayer4.add(lblPlayer4);
+		
+		JButton btnPlayer4wait = new JButton("player4Wait");
+		btnPlayer4wait.setBounds(5, 25, 88, 67);
+		panelPlayer4.add(btnPlayer4wait);
+		
+		JLabel lblplayer4Fin = new JLabel("player4Fin");
+		lblplayer4Fin.setBounds(99, 28, 70, 64);
+		panelPlayer4.add(lblplayer4Fin);
+		
+		return panelPlayerSet;
+		
 	}
 }
 
