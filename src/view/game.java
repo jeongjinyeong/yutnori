@@ -124,7 +124,7 @@ public class game extends JFrame {
 				contentPane.add(btnNewButton_3);
 				
 				JLabel lblNewLabel_1 = new JLabel("New label");
-				lblNewLabel_1.setIcon(new ImageIcon("./img/mo.PNG"));
+				lblNewLabel_1.setIcon(new ImageIcon("./img/moe.PNG"));
 				lblNewLabel_1.setBounds(733, 92, 213, 230);
 				contentPane.add(lblNewLabel_1);
 	}
