@@ -15,10 +15,11 @@ public class EventThrow implements ActionListener{
 		// TODO Auto-generated constructor stub
 		mainboard = new MainFrame(this);
 	}
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==mainboard.buttonThrowYut) {
-			System.out.println("???");
-			mainboard.lblResultThrowYut.setIcon(new ImageIcon(chooseMal()));
+			System.out.println(chooseMal());
+			mainboard.showYut(chooseMal());
 		}
 	}
 	
@@ -31,16 +32,22 @@ public class EventThrow implements ActionListener{
 		switch(throwyut_results) {
 			case 0:
 				result = "./img/doe.png";
+				break;
 			case 1:
 				result = "./img/gae.png";
+				break;
 			case 2:
 				result = "./img/gul.png";
+				break;
 			case 3:
 				result = "./img/yoot.png";
+				break;
 			case 4:
 				result = "./img/moe.png";
+				break;
 			case 5:
-				result = "./img/back_do.png";
+				result = "./img/back_doe.png";
+				break;
 		}
 		return result;
 	}

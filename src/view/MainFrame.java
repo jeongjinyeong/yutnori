@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
 	public JButton buttonThrowYut;
 	public JLabel lblResultThrowYut;
 	
@@ -70,14 +70,15 @@ public class MainFrame extends JFrame {
 		lblHeadLine.setBounds(15, 12, 133, 64);
 		contentPane.add(lblHeadLine);
 										
-		JLabel lblResultThrowYut = new JLabel("");
-		lblResultThrowYut.setIcon(new ImageIcon(eventthrow.chooseMal()));
-				
+		lblResultThrowYut = new JLabel();
 		lblResultThrowYut.setBounds(837, 73, 200, 173);
 		contentPane.add(lblResultThrowYut);
 		this.setVisible(true);
 	}
 	
+	public void showYut(String Yoot_img) {
+		lblResultThrowYut.setIcon(new ImageIcon(Yoot_img));
+	}
 
 	public JPanel createBoard() {
 		
@@ -215,7 +216,7 @@ public class MainFrame extends JFrame {
 		JPanel panelBtnSetOfThrow = new JPanel();
 		panelBtnSetOfThrow.setLayout(null);
 		
-		JButton buttonThrowYut = new JButton("윷 던지기");
+		buttonThrowYut = new JButton("윷 던지기");
 		buttonThrowYut.setBounds(0, 0, 186, 54);
 		panelBtnSetOfThrow.add(buttonThrowYut);
 		buttonThrowYut.setBackground(UIManager.getColor("Button.focus"));
