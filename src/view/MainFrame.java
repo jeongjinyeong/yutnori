@@ -1,5 +1,5 @@
 package view;
-import model.Yut;
+import controller.*;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -22,28 +22,17 @@ import java.awt.event.ActionEvent;
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JButton buttonThrowYut;
+	public JLabel lblResultThrowYut;
+	
+	private EventThrow event; 
 
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+	
+	public MainFrame(EventThrow eventthrow) {
+		event = eventthrow;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1070, 700);
 		contentPane = new JPanel();
@@ -69,12 +58,14 @@ public class MainFrame extends JFrame {
 		contentPane.add(lblHeadLine);
 										
 		JLabel lblResultThrowYut = new JLabel("");
-		lblResultThrowYut.setIcon(new ImageIcon("./img/moe.png"));
+		lblResultThrowYut.setIcon(new ImageIcon(eventthrow.chooseMal()));
+				
 		lblResultThrowYut.setBounds(837, 73, 200, 173);
 		contentPane.add(lblResultThrowYut);
-	
+		this.setVisible(true);
 	}
 	
+
 	public JPanel createBoard() {
 		
 		JPanel panelBoard = new JPanel();
@@ -211,11 +202,12 @@ public class MainFrame extends JFrame {
 		JPanel panelBtnSetOfThrow = new JPanel();
 		panelBtnSetOfThrow.setLayout(null);
 		
-		JButton buttonThrowYut = new JButton("\uB358\uC9C0\uAE30");
+		JButton buttonThrowYut = new JButton("윷 던지기");
 		buttonThrowYut.setBounds(0, 0, 186, 54);
 		panelBtnSetOfThrow.add(buttonThrowYut);
 		buttonThrowYut.setBackground(UIManager.getColor("Button.focus"));
 		buttonThrowYut.setFont(new Font("µ¸¿ò", Font.BOLD, 30));
+		buttonThrowYut.addActionListener(event);
 		
 		JButton buttonDo = new JButton("도");
 		buttonDo.setBounds(0, 70, 80, 27);
