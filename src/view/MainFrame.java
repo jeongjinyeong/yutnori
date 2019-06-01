@@ -26,11 +26,24 @@ public class MainFrame extends JFrame {
 	public JLabel lblResultThrowYut;
 	
 	private EventThrow event; 
-
 	/**
 	 * Create the frame.
 	 */
 	
+	/*원래  여기 main문 있고 MainFrame mainframe = new MainFrame() 이렇게 되있고
+	mainframe.setvisible(True) 이런식으로 해서 실행됬거든??
+	근데 컨트롤러 클래스에서 mainboard = new MainFrame(this); 이거 해줬으까 생성자를
+	여기 밑에있는 식으로 바꿨는데 () 괄호안에 EventThrow eventthrow넣어서
+	생성자는 문제없ㄴㄴ데  MainFrame mainframe = new MainFrame()여기가 에러뜨는거 괄호안에 파라미터없다고
+	그래서 저 괄호안에 event넣어도보고 넣었더니 그걸 static으로 바꾸라해서 static이 뭔진 모르겠는데 위에 private EventThrow event;를
+	도 private static EventThrow event; 으로 해보고 별지랄 다했는데도 안되서
+	그냥 이 클래스 안에있는 main문 없애고 훼이크 클래스(startpage) 만들어서 거기다 메인문 넣고
+	new EventThrow()해서 eventthrow 생성자 실행하고, 그러면 eventthrow 생성자에서
+	mainboard = new MainFrame(this); 이거 해주니까 
+	MainFrame생성자 밑에서 this.setVisible(true)해서 판 보여주는거까진 됬는데
+	여전히 마우스 이벤트 못받아줘가지고
+	걍 여기서 ㅈㅈ침
+	*/
 	public MainFrame(EventThrow eventthrow) {
 		event = eventthrow;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
