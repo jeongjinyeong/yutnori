@@ -76,10 +76,6 @@ public class MainFrame extends JFrame {
 		contentPane.add(lblResultThrowYut);
 		this.setVisible(true);
 	}
-	
-	public void showYut(String Yoot_img) {
-		lblResultThrowYut.setIcon(new ImageIcon(Yoot_img));
-	}
 
 	public JPanel createBoard() {
 		
@@ -167,7 +163,6 @@ public class MainFrame extends JFrame {
 		panelBtnSetOfThrow.setLayout(null);
 		JButton[] throwBtns = new JButton[6];
 		String[] throwString = {"도","개","걸","윷","모","백도"};
-		
 		buttonThrowYut = new JButton("윷 던지기");
 		buttonThrowYut.setBounds(0, 0, 186, 54);
 		panelBtnSetOfThrow.add(buttonThrowYut);
@@ -182,7 +177,8 @@ public class MainFrame extends JFrame {
 				panelBtnSetOfThrow.add(throwBtns[(i*2)+j]);
 			}
 		}
-	
+		
+
 		return panelBtnSetOfThrow;
 		
 	}

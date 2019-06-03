@@ -18,8 +18,9 @@ public class EventThrow implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==mainboard.buttonThrowYut) {
-			System.out.println(chooseMal());
-			mainboard.showYut(chooseMal());
+			String throwResult = chooseMal();
+			System.out.println(throwResult);
+			mainboard.lblResultThrowYut.setIcon(new ImageIcon(throwResult));
 		}
 	}
 	
