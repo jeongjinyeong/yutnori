@@ -7,26 +7,54 @@ public class FootHold {
 	private FootHold prevFootHold;
 	
 	public FootHold(FootHold previous) {
+		System.out.println("Hi");
 		this.prevFootHold = previous;
 		previous.nextFootHold = this;
 		this.playerName = -1;
 		this.horseNum = -1;
 	}
+	
 	public FootHold() {
-		this.nextFootHold = null;
-		this.prevFootHold = null;
-		this.playerName = -1;
-		this.horseNum = -1;
-					
+
+		System.out.println("Hello");
+		nextFootHold = null;
+		prevFootHold = null;
+		playerName = -1;
+		horseNum = -1;
 	}
+
 	public void setNextFootHold(FootHold next) {
-		this.nextFootHold = next;
+		nextFootHold = next;
 	}
 	public void setPrevFootHold(FootHold prev) {
-		this.prevFootHold = prev;
+		prevFootHold = prev;
 	}
+	
 	public void putHorse(int playerName) {
-		//ÇöÀç ÇÃ·¹ÀÌ¾î ÀÌ¸§ÀÌ¶û µé¾î¿Â ÀÌ¸§ÀÌ ´Ù¸¦¶§
-		//°°À»¶§ 
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ì¸ï¿½ï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½
+		if(playerName != this.playerName) {
+			this.playerName = playerName;
+			horseNum = 1;
+		}
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+		else {
+			horseNum++;
+		}
+	}
+	
+	public int getPlayerName() {
+		return this.playerName;
+	}
+	
+	public int getHorseNum() {
+		return this.horseNum;
+	}
+	
+	public FootHold getPrevFootHold() {
+		return this.prevFootHold;
+	}
+	
+	public FootHold getNextFootHold() {
+		return this.nextFootHold;
 	}
 }

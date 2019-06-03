@@ -68,7 +68,7 @@ public class MainFrame extends JFrame {
 		
 		JPanel panelBoard = new JPanel();
 		panelBoard.setLayout(null);
-		JButton[][] pbtn = new JButton[7][7];
+		pbtn = new JButton[7][7];
 		
 		for(int i=0; i<7; i++) {
 			for(int j=0; j<7; j++) {
@@ -186,9 +186,8 @@ public class MainFrame extends JFrame {
 						panelBoard.add(pbtn[i][j]);
 					}
 				}
-
+				pbtn[i][j].addActionListener(event);
 			}
-			
 		}
 
 		JLabel lblBoard = new JLabel("");
