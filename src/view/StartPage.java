@@ -1,5 +1,6 @@
 package view;
-import controller.EventThrow;
+import controller.Controller;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -28,7 +29,7 @@ public class StartPage extends JFrame{
 	public JButton[] playerNum;
 	public JButton[] malNum;
 	public JButton startGame;
-	private EventThrow event;
+	private Controller control;
 	
 	public StartPage() {
 		
@@ -39,13 +40,13 @@ public class StartPage extends JFrame{
 		setContentPane(startPane);
 		startPane.setLayout(null);
 
-//		JPanel panelPlayerNumSet = createPlayerNum();
-//		panelPlayerNumSet.setBounds(4, 80, 186, 512);
-//		startPane.add(panelPlayerNumSet);
-//
-//		JPanel panelMalNumSet = createMalNum();
-//		panelMalNumSet.setBounds(537, 155, 100, 87);
-//		startPane.add(panelMalNumSet);
+		JPanel panelPlayerNumSet = createPlayerNum();
+		panelPlayerNumSet.setBounds(4, 80, 186, 512);
+		startPane.add(panelPlayerNumSet);
+
+		JPanel panelMalNumSet = createMalNum();
+		panelMalNumSet.setBounds(537, 155, 100, 87);
+		startPane.add(panelMalNumSet);
 
 		JPanel panelStartGame = createStartGame();
 		panelStartGame.setBounds(837, 73, 200, 173);
@@ -70,7 +71,7 @@ public class StartPage extends JFrame{
 			playerNum[i] = new JButton(player_num[i]);
 			playerNum[i].setBounds(0+(i*106), 70+(i*40), 80, 27);
 			panelPlayerNum.add(playerNum[i]);
-			playerNum[i].addActionListener(event);
+			playerNum[i].addActionListener(control);
 		}		
 		return panelPlayerNum;
 		
@@ -87,7 +88,7 @@ public class StartPage extends JFrame{
 			malNum[i] = new JButton(mal_num[i]);
 			malNum[i].setBounds(0+(i*207), 70+(i*140), 180, 127);
 			panelMalNum.add(malNum[i]);
-			malNum[i].addActionListener(event);
+			malNum[i].addActionListener(control);
 		}
 		
 		return panelMalNum;
@@ -102,7 +103,7 @@ public class StartPage extends JFrame{
 		
 		startGame.setBounds(12, 19, 62, 18);
 		panelStartGame.add(startGame);
-		startGame.addActionListener(event);
+		startGame.addActionListener(control);
 		
 		
 		return panelStartGame;
@@ -110,6 +111,6 @@ public class StartPage extends JFrame{
 	}	
 	public static void main(String[] args) {
 			System.out.println("게임시작");
-			new StartPage();
+			new EventThrow();//
 		}
 }
