@@ -15,23 +15,24 @@ public class Yut {
 	public static int throwYut() {
 		Random random = new Random();
 		float ran_num = random.nextFloat();
+		
 		if(ran_num<=0.1152) {
-			return DOE; //µµ
+			return DOE; //ï¿½ï¿½
 		}
 		else if(ran_num>0.1152 && ran_num<=0.4608) {
-			return GAE; //°³
+			return GAE; //ï¿½ï¿½
 		}
 		else if(ran_num>0.4608 && ran_num<=0.8064) {
-			return GUL; //°É
+			return GUL; //ï¿½ï¿½
 		}
 		else if(ran_num>0.8064 && ran_num<=0.936) {
-			return YOOT; //À·
+			return YOOT; //ï¿½ï¿½
 		}
 		else if(ran_num>0.936 && ran_num<=0.9616) {
-			return MOE; //¸ğ
+			return MOE; //ï¿½ï¿½
 		}
 		else{
-			return BACK_DOE;  //¹éµµ
+			return BACK_DOE;  //ï¿½éµµ
 		} 
 		
 	}
