@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 	public JPanel contentPane;
 	public JButton buttonThrowYut; //랜덤윷던지기 버튼
 	public JLabel lblResultThrowYut; //결과 이미지
-	public JButton[] pbtn; //보드 버튼 배열
+	public JButton[][] pbtn; //보드 버튼 배열
 	public JButton[] throwBtns; //도개결윷모 던지기 버튼 배열
 	private EventThrow event; 
 	/**
@@ -68,71 +68,125 @@ public class MainFrame extends JFrame {
 		
 		JPanel panelBoard = new JPanel();
 		panelBoard.setLayout(null);
-		pbtn = new JButton[29];
+		JButton[][] pbtn = new JButton[7][7];
 		
-		for(int i=0; i<29; i++) {
-			pbtn[i] = new JButton();
-			if( i == 0) { //start 버튼
-				pbtn[i].setBounds(510, 490, 80, 80); 
-				panelBoard.add(pbtn[i]);
-			}
-			if( i>=1 && i<=4) { //오른쪽
-				int offset = i-1;
-				pbtn[i].setBounds(526 , 400 - (89*offset), 45, 45); //왼쪽 세로 줄 
-				panelBoard.add(pbtn[i]);
-			}
-			if( i == 5) {// 1시방향 버튼 
-				pbtn[i].setBounds(510, 5, 80, 80);
-				panelBoard.add(pbtn[i]);
-			}
-			if( i>=6 && i<=9) {  //위쪽버튼
-				int offset = i-6;
-				pbtn[i].setBounds(415- (89*offset), 21, 45, 45); //위쪽 줄 
-				panelBoard.add(pbtn[i]);
-			}
-			if( i == 10) {
-				pbtn[i].setBounds(23, 5, 80, 80);
-				panelBoard.add(pbtn[i]);
-			}
-			if( i>=11 && i<=14) {  //왼쪽
-				int offset = i-11;
-				pbtn[i].setBounds(40, 130 + (89*offset), 45, 45); //위쪽 줄 
-				panelBoard.add(pbtn[i]);
-			}
-			if( i == 15) {
-				pbtn[i].setBounds(23, 486, 80, 80);
-				panelBoard.add(pbtn[i]);
-			}
-			if( i>=16 && i<=19) { 
-				int offset = i-16;
-				pbtn[i].setBounds(150 + (89*offset), 507, 45, 45); //위쪽 줄 
-				panelBoard.add(pbtn[i]);
-			}
-			if( i == 20) { //센터
-				pbtn[i].setBounds(265, 247, 80, 80);
-				panelBoard.add(pbtn[i]);
-			}
-			if( i>=21 && i<=22) { //센터 왼쪽부터 한줄
-				int offset = i-21;
+		for(int i=0; i<7; i++) {
+			for(int j=0; j<7; j++) {
+				int offset = 0;
+				int x = 0, y =0 ;
+				pbtn[i][j] = new JButton();
+				if( i == 6 && j ==6) { //start 버튼
+					pbtn[i][j].setBounds(510, 490, 80, 80); 
+					panelBoard.add(pbtn[i][j]);
+				}
+				if( i == 0 && j==6) {// 1시방향 버튼 
+					pbtn[i][j].setBounds(510, 5, 80, 80);
+					panelBoard.add(pbtn[i][j]);
+				}
+				if( i == 0 && j ==0) {
+					pbtn[i][j].setBounds(23, 5, 80, 80);
+					panelBoard.add(pbtn[i][j]);
+				}
+				if( i == 6 && j== 0) {
+					pbtn[i][j].setBounds(23, 486, 80, 80);
+					panelBoard.add(pbtn[i][j]);
+				}
+				
+				if( j==6 || j==0) { //겉에 세로 
+					if(j ==6) {
+						x =526;
+						y= 400;
+					}else{
+						x =40;
+						y= 400;
+					}
+					if( i == 4 || i ==5) {
+						offset = i-4;
+						pbtn[i][j].setBounds(x , y - (89*offset), 45, 45); //왼쪽 세로 줄 
+						panelBoard.add(pbtn[i][j]);
+					}
+					if( i == 1 || i ==2) {
+						offset = 4-i;
+						pbtn[i][j].setBounds(x , y - (89*offset), 45, 45); //왼쪽 세로 줄 
+						panelBoard.add(pbtn[i][j]);
+					}
+				}
 
-				pbtn[i].setBounds(126, 107+ (315*offset), 45, 45);
-				panelBoard.add(pbtn[i]);
-			}
-			if( i>=23 && i<=24) {
-				int offset = i-23;
-				pbtn[i].setBounds(197, 180+ (170*offset), 45, 45);
-				panelBoard.add(pbtn[i]);
+				if( i==0 || i==6) { //겉에 가로 
+					if(i==0) {
+						x = 150;
+						y= 21;
+					}else {
+						x = 150;
+						y = 507;
+					}
+					if( j ==1 || j ==2) {
+						offset = j-1;
+						pbtn[i][j].setBounds(x + (89*offset), y, 45, 45); //위쪽 줄 
+						panelBoard.add(pbtn[i][j]);
+					}
+					if( j ==4 || j ==5) {
+						offset = j-2;
+						pbtn[i][j].setBounds(x + (89*offset), y, 45, 45); //위쪽 줄 
+						panelBoard.add(pbtn[i][j]);
+					}
+				}
+				if( i == 3 && j==3) { //센터
+					pbtn[i][j].setBounds(265, 247, 80, 80);
+					panelBoard.add(pbtn[i][j]);
+				}
+				if( j ==1 ) { //센터 왼쪽부터 한줄
+					if( i ==1) {
+						offset = 0;
+						pbtn[i][j].setBounds(126, 107+ (315*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+					if (i ==5) {
+						offset = 1;
+						pbtn[i][j].setBounds(126, 107+ (315*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
 
-			}
-			if( i>=25 && i<=26) {
-				int offset = i-25;
-				pbtn[i].setBounds(370, 180+ (170*offset), 45, 45);
-				panelBoard.add(pbtn[i]);
-			}
-			if( i>=27 && i<=28) {
-				int offset = i-27;
-				pbtn[i].setBounds(441, 107+ (315*offset), 45, 45);
-				panelBoard.add(pbtn[i]);
+				}
+				if( j ==2 ) { //센터 왼쪽부터 한줄
+					if( i ==2) {
+						offset = 0;
+						pbtn[i][j].setBounds(197, 180+ (170*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+					if (i ==4) {
+						offset = 1;
+						pbtn[i][j].setBounds(197, 180+ (170*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+
+				}
+				if( j ==4 ) { //센터 왼쪽부터 한줄
+					if( i ==2) {
+						offset = 0;
+						pbtn[i][j].setBounds(370, 180+ (170*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+					if (i ==4) {
+						offset = 1;
+						pbtn[i][j].setBounds(370, 180+ (170*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+
+				}
+				if( j ==5 ) { //센터 왼쪽부터 한줄
+					if( i ==1) {
+						offset = 0;
+						pbtn[i][j].setBounds(441, 107+ (315*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+					if (i ==5) {
+						offset = 1;
+						pbtn[i][j].setBounds(441, 107+ (315*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+				}
+
 			}
 			
 		}
