@@ -25,7 +25,7 @@ public class Controller implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==mainboard.buttonThrowYut) {
-			String throwResult = yutname[model.Yut.throwYut()];
+			String throwResult = yutname[model.Yut.throwYut()];//³ª´©±â
 	//		board.setIndex(throwResult);
 			mainboard.lblResultThrowYut.setIcon(new ImageIcon(throwResult));
 		}
@@ -39,6 +39,7 @@ public class Controller implements ActionListener{
 		for(int i=0; i<7; i++) {
 			for(int j=0; j<7; j++) {
 				if(e.getSource()==mainboard.pbtn[i][j]) {
+					
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 package model;
 
-public class Horse {
+public class  {
 	private int player;
 	//public static int num;
 	//���� �ִ� ������ ���缭 ��ü ������ ���� ������ �����ؾ� ��.
