@@ -26,14 +26,13 @@ public class MainFrame extends JFrame {
 	public JLabel lblResultThrowYut; //결과 이미지
 	public JButton[][] pbtn; //보드 버튼 배열
 	public JButton[] throwBtns; //도개결윷모 던지기 버튼 배열
-	private EventThrow event; 
+	private Controller control; 
 	/**
 	 * Create the frame.
 	 */
 
-	public MainFrame(EventThrow eventthrow) {
-		event = eventthrow;
-		
+	public MainFrame(Controller controller) {
+		control = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1070, 750);
 		contentPane = new JPanel();
@@ -186,7 +185,7 @@ public class MainFrame extends JFrame {
 						panelBoard.add(pbtn[i][j]);
 					}
 				}
-				pbtn[i][j].addActionListener(event);
+				pbtn[i][j].addActionListener(control);
 			}
 		}
 
@@ -208,14 +207,14 @@ public class MainFrame extends JFrame {
 		panelBtnSetOfThrow.add(buttonThrowYut);
 		buttonThrowYut.setBackground(UIManager.getColor("Button.focus"));
 		buttonThrowYut.setFont(new Font("굴림", Font.BOLD, 30));
-		buttonThrowYut.addActionListener(event);
+		buttonThrowYut.addActionListener(control);
 		
 		for(int i=0; i<3; i++) {
 			for(int j=0; j<2; j++) {
 				throwBtns[(i*2)+j] = new JButton(throwString[(i*2)+j]);
 				throwBtns[(i*2)+j].setBounds(0 + (j*106), 70 + (i*40 ), 80, 27);
 				panelBtnSetOfThrow.add(throwBtns[(i*2)+j]);
-				throwBtns[(i*2)+j].addActionListener(event);
+				throwBtns[(i*2)+j].addActionListener(control);
 			}
 		}
 		

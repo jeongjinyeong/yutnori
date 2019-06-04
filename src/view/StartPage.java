@@ -1,5 +1,6 @@
 package view;
-import controller.EventThrow;
+import controller.Controller;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -28,7 +29,7 @@ public class StartPage extends JFrame{
 	public JButton[] playerNum;
 	public JButton[] malNum;
 	public JButton startGame;
-	private EventThrow event;
+	private Controller control;
 	
 	public StartPage() {
 		
@@ -49,10 +50,10 @@ public class StartPage extends JFrame{
 	
 	public void createPlayerNum() {
 
-		JLabel label = new JLabel("½ÃÀÛÀÎ¿ø");
+		JLabel label = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½");
 		label.setBounds(50, 83, 62, 18);
 		startPane.add(label);
-		String[] player_num = {"2¸í","3¸í","4¸í"};
+		String[] player_num = {"2ï¿½ï¿½","3ï¿½ï¿½","4ï¿½ï¿½"};
 		playerNum = new JButton[3];
 		for(int i=0; i<3; i++) {
 			playerNum[i] = new JButton(player_num[i]);
@@ -65,11 +66,11 @@ public class StartPage extends JFrame{
 
 	public void createMalNum() {
 		
-		JLabel label_1 = new JLabel("¸» °¹¼ö");
+		JLabel label_1 = new JLabel("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		label_1.setBounds(50, 168, 62, 18);
 		startPane.add(label_1);
 
-		String[] mal_num = {"2°³","3°³","4°³","5°³"};
+		String[] mal_num = {"2ï¿½ï¿½","3ï¿½ï¿½","4ï¿½ï¿½","5ï¿½ï¿½"};
 		malNum = new JButton[4];
 		
 		for(int i=0; i<4; i++) {
@@ -85,11 +86,11 @@ public class StartPage extends JFrame{
 	public void createStartGame() {
 		
 		
-		JButton btnNewButton = new JButton("°ÔÀÓ½ÃÀÛ");
+		JButton btnNewButton = new JButton("ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½");
 		btnNewButton.setBounds(152, 217, 204, 39);
 		startPane.add(btnNewButton);
 
-		JLabel label_2 = new JLabel("À·³îÀÌ");
+		JLabel label_2 = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		label_2.setBounds(230, 24, 74, 18);
 		startPane.add(label_2);
 		
