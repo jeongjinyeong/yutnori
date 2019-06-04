@@ -16,7 +16,6 @@ public class EventThrow implements ActionListener{
 	public EventThrow() {
 		mainboard = new MainFrame(this);
 		board = new model.Board();
-		board.initBoard();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
