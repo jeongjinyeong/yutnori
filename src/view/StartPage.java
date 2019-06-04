@@ -50,10 +50,10 @@ public class StartPage extends JFrame{
 	
 	public void createPlayerNum() {
 
-		JLabel label = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½");
+		JLabel label = new JLabel("½ÃÀÛÀÎ¿ø");
 		label.setBounds(50, 83, 62, 18);
 		startPane.add(label);
-		String[] player_num = {"2ï¿½ï¿½","3ï¿½ï¿½","4ï¿½ï¿½"};
+		String[] player_num = {"2¸í","3¸í","4¸í"};
 		playerNum = new JButton[3];
 		for(int i=0; i<3; i++) {
 			playerNum[i] = new JButton(player_num[i]);
@@ -66,18 +66,18 @@ public class StartPage extends JFrame{
 
 	public void createMalNum() {
 		
-		JLabel label_1 = new JLabel("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		JLabel label_1 = new JLabel("¸»°¹¼ö");
 		label_1.setBounds(50, 168, 62, 18);
 		startPane.add(label_1);
 
-		String[] mal_num = {"2ï¿½ï¿½","3ï¿½ï¿½","4ï¿½ï¿½","5ï¿½ï¿½"};
+		String[] mal_num = {"2°³","3°³","4°³","5°³"};
 		malNum = new JButton[4];
 		
 		for(int i=0; i<4; i++) {
 			malNum[i] = new JButton(mal_num[i]);
 			malNum[i].setBounds(126+(i*80), 139, 55, 50);
 			startPane.add(malNum[i]);
-			malNum[i].addActionListener(event);
+			malNum[i].addActionListener(control);
 		}
 
 		
@@ -86,11 +86,11 @@ public class StartPage extends JFrame{
 	public void createStartGame() {
 		
 		
-		JButton btnNewButton = new JButton("ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½");
+		JButton btnNewButton = new JButton("°ÔÀÓ½ÃÀÛ");
 		btnNewButton.setBounds(152, 217, 204, 39);
 		startPane.add(btnNewButton);
 
-		JLabel label_2 = new JLabel("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		JLabel label_2 = new JLabel("À·³îÀÌ");
 		label_2.setBounds(230, 24, 74, 18);
 		startPane.add(label_2);
 		
