@@ -98,20 +98,25 @@ public class Game {
 //	private ArrayList<FootHold> board ;
 	private int maxPlayer;
 	private int maxHorse;
+	private ArrayList<Player> player = new ArrayList<Player>();
 //	private int[] yut = new int[6];
-	private HorseSet[][] board = new HorseSet[7][7];
-	private ArrayList<Integer> index_i = new ArrayList<Integer>();
-	private ArrayList<Integer> index_j = new ArrayList<Integer>();
 	
-	public Game() {}
-
-	public void setMaxPlayer(int maxPlayer) {
-		
-		this.maxPlayer = maxPlayer;
-		//test
-		System.out.println(this.maxPlayer);
+	private HorseSet[][] board = new HorseSet[7][7];
+	private ArrayList<Integer> location_i = new ArrayList<Integer>();
+	private ArrayList<Integer> location_j = new ArrayList<Integer>();
+	private ArrayList<Integer> destination_i = new ArrayList<Integer>();
+	private ArrayList<Integer> destination_j = new ArrayList<Integer>();
+	
+	public Game() {
 	}
 	
+
+	public void setPlayer(int maxPlayer) {
+		for(int p=0; p<maxPlayer; p++) {
+			player.add(new Player(p, 1));
+		}
+	}
+
 	public void setMaxHorse(int maxHorse) {
 		this.maxHorse = maxHorse;
 	}
@@ -120,23 +125,18 @@ public class Game {
 		return (player++)%maxPlayer;
 	}
 	
-	public void HSLocation(Player player) {
+	
+	public void location(int player_num) {
 		//player�� horseSets�� Ž���ؼ� �� horseSet�� �ε��� ���� ����.
-		index_i.clear();
-		index_j.clear();
-		for(int i=0; i<player.getHorseSets().size(); i++) {
-			index_i.add(player.getHorseSets().get(i).get_i());
-			index_j.add(player.getHorseSets().get(i).get_j());
+		location_i.clear();
+		location_j.clear();
+		for(int i=0; i<player.get(player_num).getHorseSets().size(); i++) {
+			location_i.add(player.get(player_num).getHorseSets().get(i).get_i());
+			location_j.add(player.get(player_num).getHorseSets().get(i).get_j());
 		}
 	}
 
-	//horseSet�� ��ü�� �ϸ� ���� �����ְų� �Ҷ� horses �迭�� �����ؼ� �߰������ �Ѵ�.
-	//horseSet�� ��ü�� ���� �ʰ� �ٷ� horse�� ��ü�� ���´ٸ� ���� �̵��� �� �ε����� ���� ��� ������ ��������� �Ѵ�.
-//	public void check(Player player) {
-//		for(int i=0; i<)
-//	}
-	
-	public void move(int index_i, int index_j, int yut, Player player) {
+	public void destination(int index_i, int index_j, int yut) {
 		//HSLocation���� ���� horseSet���� index�� �߿� �ϳ��� ������ move�� �Ű������� ����
 		//�Ű������� ���� index���� ���� �̵� ���� ���� ��ȯ
 		if(index_j == 6 && index_i > 0) {
@@ -207,18 +207,36 @@ public class Game {
 					index_j++;
 				index_j++;
 			}
-		
+	}
+	
+	public void move(int index_i, int index_j, int p) {
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[0].length; j++) {
 				if(board[i][j].get_i()==index_i && board[i][j].get_j()==index_j) {
-					if(player.getPlayer()==board[i][j].getPlayer()) {
-						for(int k=0; k<player.getHorseSets().size(); k++) {
-							player.getHorseSets().get(k).get_i();
+					if(player.get(p).getPlayer()==board[i][j].getPlayer()) {
+						for(int k=0; k<player.get(p).getHorseSets().size(); k++) {
+							player.get(p).getHorseSets().get(k).get_i();
 						}
 					}
 						
 				}
 			}
 		}
+	}
+	
+	public ArrayList<Integer> get_location_i(){
+		return location_i;
+	}
+	
+	public ArrayList<Integer> get_location_j(){
+		return location_j;
+	}
+	
+	public ArrayList<Integer> get_destination_i(){
+		return destination_i;
+	}
+	
+	public ArrayList<Integer> get_destination_j(){
+		return destination_j;
 	}
 }

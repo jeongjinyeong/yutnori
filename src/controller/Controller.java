@@ -18,12 +18,13 @@ public class Controller implements ActionListener{
 	private StartPage startpage;
 	String[] yutname = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
 	int[] click_cnt;
-
+	int turn;
 	
 	public Controller() {
 		startpage = new StartPage(this);
 		mainboard = new MainFrame(this);
 		game = new Game();
+		turn = 0;
 	}
 	
 	
@@ -31,13 +32,12 @@ public class Controller implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		int player_num = 0;
 		int horse_num = 0;
-		int yut;
+		int yut = 0;
 		if(e.getSource()==startpage.playerCombo) {
 			String temp_player = startpage.playerCombo.getSelectedItem().toString();
 			System.out.println(player_num);
 			player_num = temp_player.charAt(0) - '0';
-			game.setMaxPlayer(player_num);
-			click_cnt = new int[player_num];
+			game.setPlayer(player_num);
 		}
 		
 		if(e.getSource()==startpage.horseCombo) {
@@ -69,61 +69,44 @@ public class Controller implements ActionListener{
 				
 			}
 		}
-		
-		
+	
 		for(int i=0; i<7; i++) {
 			for(int j=0; j<7; j++) {
-				
-				//이동하기 전에, 내 말을 클릭해서 어디로 갈 수 있는지 보고 싶을 때
-				if(e.getSource()==mainboard.pbtn[i][j] && click_cnt[game.get_player_num()]%2 == 0 )
-				{
-					if(game.HSLocation.contains([i,j])) {
-						temp_idx[player_num] = [i, j];
-						click_cnt[game.get_player_num()]++;
-						can_move_idx = game.move(i, j, yut, player_num);
-						for(int k=0; k<can_move_idx.length; k++) {
-							int a, int b = can_move_idx[k][0], can_move_idx[k][1];
-							mainboard.pbtn[a][b].setIcon(말이 갈 수 있다는 표시);
+				if(e.getSource() == mainboard.pbtn[i][j]) {
+					game.location(turn);
+					System.out.println(game.get_location_i().size());
+					System.out.println(game.get_location_i().get(0));
+					System.out.println(game.get_location_j().get(0));
+					for(int k=0; k<game.get_location_i().size(); k++) {
+						System.out.println("hi");
+						if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k)) {
+							game.destination(i, j, yut);
+							for(int m=0; m<game.get_destination_i().size(); m++) {
+								int x = game.get_destination_i().get(m);
+								int y = game.get_destination_j().get(m);
+								mainboard.pbtn[x][y].setText("여기로 올수 있음");
+							}
+						}
+						
+						if(i==game.get_destination_i().get(k) && j==game.get_destination_j().get(k)) {
+							game.move(i, j, turn);
+							for (int n=0; n<game.get_location_i().size(); n++) {
+								int x = game.get_location_i().get(n);
+								int y = game.get_location_j().get(n);
+								mainboard.pbtn[x][y].setText("말 여기있음");
+								turn = game.turn(turn);
+							}
 						}
 					}
-				}
-				//내 말이 어디로 갈 수 있는지 확인하기 위해 버튼을 한 번 누를 상태에서, 갈 수 있는 위치의 버튼을 눌렀을 때
-				if(e.getSource()==mainboard.pbtn[i][j] && click_cnt[game.get_player_num()]%2 == 1)
-				{
-					if(game.HSLocation.contains([i,j])) {
-						
-						//아무것도 없을 시
-						if(board.horseset[i][j] == Null){
-							
-							board.deleteIdx(temp_idx[player_num], player_num);
-							mainboard.pbtn[temp_idx[player_num]].delete();
-							board.setIdx(i, j, player_num);
-							mainboard.pbtn[i][j].setIcon(움직인 말);						
-							
-						}
-						
-						//같은 팀 말이 있을 시
-						else if(board.horseset[i][j] == game.get_player_num) {
-							board.deleteIdx(temp_idx[player_num], player_num);
-							mainboard.pbtn[temp_idx[player_num]].delete();
-							board.setIdx(i, j, player_num);
-							mainboard.pbtn[i][j].setIcon(움직인 말);
-						}
-						
-						
-						//상대 팀 말이 있을 시
-						
-					}
+					
+					
 				}
 			}
-		}
 		
+		}		
 	}		
-		
 
 	public static void main(String[] args) {
-		int[][] a = new int[4][2];
-		System.out.println(a.length);
 		new Controller();
 	}
 }	
