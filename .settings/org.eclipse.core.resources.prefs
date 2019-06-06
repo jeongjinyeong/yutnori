@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/model/Board.java=UTF-8
+encoding//src/model/Game.java=UTF-8
+encoding//src/model/Horse.java=UTF-8
+encoding//src/model/HorseSet.java=UTF-8
 encoding//src/view/MainFrame.java=UTF-8

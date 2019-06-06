@@ -8,24 +8,18 @@ public class HorseSet {
 	private int j;
 	private ArrayList<Horse> horses = new ArrayList<Horse>();
 
-	public HorseSet() {
-		horses = null;
-		i = -1;
-		j = -1;
-	}
+	public HorseSet() {}
 	
 	//horse�� �ϳ� ������ HorseSet ����
-	//�Ű����� horse�� player ������ �ҷ��´�. horse ��ü ���� ������ player���� ó������� �� ������ �����ȴ�.
-	public HorseSet(Horse horse) {
-		player = horse.getPlayer();
-		horses.add(horse);
+	public HorseSet(int player) {
+		this.player = player;
 		i = -1;
 		j = -1;
 	}
 	
-	//���ο� HorseSet�� ���� ��� -> player �� �� ������ �߰�(�� ����), �ٸ��� ��ü
-	//ArrayList���� ��ü ������ ��� deep copy�� �Ͽ��� ���� ��ü�� �νĵǹǷ� ���� �����ڸ� ���� ��������� �Ѵ�.
-	public void newHorseSet(HorseSet f) {
+//	���ο� HorseSet�� ���� ��� -> player �� �� ������ �߰�(�� ����), �ٸ��� ��ü
+//	ArrayList���� ��ü ������ ��� deep copy�� �Ͽ��� ���� ��ü�� �νĵǹǷ� ���� �����ڸ� ���� ��������� �Ѵ�.
+	public void newHorse(HorseSet f) {
 		if(player==f.getPlayer()) {
 			for(int i=0; i<f.getHorses().size() ;i++) {
 				horses.add(new Horse(f.getHorses().get(i)));

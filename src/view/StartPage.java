@@ -1,7 +1,5 @@
 package view;
 import controller.Controller;
-
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -31,8 +29,10 @@ public class StartPage extends JFrame{
 	public JButton[] malNum;
 	public JButton startGame;
 	private Controller control;
-	
-	public StartPage() {
+	public JComboBox playerCombo;
+	public JComboBox horseCombo;
+	public StartPage(Controller controller) {
+		control = controller;
 		String[] playerStringSet = {"2명","3명","4명"};
 		String[] horseStringSet = {"2개","3개","4개","5개"};
 		
@@ -53,27 +53,26 @@ public class StartPage extends JFrame{
 		startPane.add(label_1);
 
 
-		JComboBox playerCombo= new JComboBox(playerStringSet);
+		playerCombo= new JComboBox(playerStringSet);
 		playerCombo.setBounds(250, 83, 100, 30);
 		startPane.add(playerCombo);
-		JComboBox horseCombo= new JComboBox(horseStringSet);
+		horseCombo= new JComboBox(horseStringSet);
 		horseCombo.setBounds(250, 159, 100, 30);
 		startPane.add(horseCombo);
+		playerCombo.addActionListener(control);
+		horseCombo.addActionListener(control);
 		
-		/*
+		
 		playerCombo.getSelectedItem().toString();
-		horseCombo.getSelectedItem().toString(); 값 가져오는 메쏘드
-		 */
-		JButton btnNewButton = new JButton("게임시작");
-		btnNewButton.setBounds(152, 217, 204, 39);
-		startPane.add(btnNewButton);
-
+		horseCombo.getSelectedItem().toString(); 
+		
+		startGame = new JButton("게임시작");
+		startGame.setBounds(152, 217, 204, 39);
+		startPane.add(startGame);
+		startGame.addActionListener(control);
 
 		this.setVisible(true);
 	}
 	
 	
-	public static void main(String[] args) {
-			new StartPage();
-		}
 }

@@ -96,13 +96,11 @@ import java.util.ArrayList;
 
 public class Board {
 //	private ArrayList<FootHold> board ;
-	private HorseSet[][] board;
+	private HorseSet[][] board = new HorseSet[7][7];
 	private ArrayList<Integer> index_i = new ArrayList<Integer>();
 	private ArrayList<Integer> index_j = new ArrayList<Integer>();
 	
-	public Board() {
-		board = new HorseSet[7][7];
-	}
+	public Board() {}
 
 	public void HSLocation(Player player) {
 		//player�� HorseSet ��ġ�� ��ȯ����� �ϴµ� ��ȯ���� ���� �ؾ� �ϳ�.. ��� ��ȯ������?
@@ -117,7 +115,6 @@ public class Board {
 		if(j==7 && i<6 && i>0) {
 			
 		}
-		
 	}
 	
 }

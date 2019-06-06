@@ -32,6 +32,7 @@ public class MainFrame extends JFrame {
 	 */
 
 	public MainFrame(Controller controller) {
+		
 		control = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1070, 750);
@@ -44,9 +45,9 @@ public class MainFrame extends JFrame {
 		panelBoard.setBounds(204, 73, 619, 580);
 		contentPane.add(panelBoard);
 
-		JPanel panelPlayerSet = createPlayerSet();
-		panelPlayerSet.setBounds(4, 80, 186, 512);
-		contentPane.add(panelPlayerSet);
+//		JPanel panelPlayerSet = createPlayerSet(int player_num, int horse_num);
+//		panelPlayerSet.setBounds(4, 80, 186, 512);
+//		contentPane.add(panelPlayerSet);
 
 		JPanel panelThrowBtnSet = createThrowSet();
 		panelThrowBtnSet.setBounds(837, 255, 200, 187);
@@ -60,7 +61,7 @@ public class MainFrame extends JFrame {
 		lblResultThrowYut = new JLabel();
 		lblResultThrowYut.setBounds(837, 73, 200, 173);
 		contentPane.add(lblResultThrowYut);
-		this.setVisible(true);
+
 	}
 
 	public JPanel createBoard() {
@@ -222,7 +223,7 @@ public class MainFrame extends JFrame {
 		return panelBtnSetOfThrow;
 		
 	}
-	public JPanel createPlayerSet() {
+	public JPanel createPlayerSet(int player_num, int horse_num) {
 		JPanel panelPlayerSet = new JPanel();
 		panelPlayerSet.setLayout(null);
 		

@@ -1,25 +1,21 @@
 package model;
 
-public class  {
+public class Horse {
 	private int player;
-	//public static int num;
-	//���� �ִ� ������ ���缭 ��ü ������ ���� ������ �����ؾ� ��.
-	//Horse�� Player�� ��ü�� ���� ���ΰ�, Player�� Horse�� ��ü�� ���� ���ΰ�....
-	//Player�� HorseSet�� ��ü�� �������ϳ�..?(����)
+//	private int i;
+//	private int j;
 	
-	public Horse() {
-		player = -1;
-	}
-	
-	public Horse(Horse h) {
-		this.player = h.getPlayer();
-	}
+	public Horse() {}
 	
 	public Horse(int player) {
 		this.player = player;
 	}
 	
+	public Horse(Horse h) {
+		player = h.getPlayer();
+	}
+	
 	public int getPlayer() {
-		return player;
+		return this.player;
 	}
 }
