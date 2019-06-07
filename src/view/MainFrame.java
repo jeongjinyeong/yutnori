@@ -21,11 +21,12 @@ import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
-	public JPanel contentPane;
+	public JPanel mainFrame;
 	public JButton ramdomThrowYutBtn; //랜덤윷던지기 버튼
-	public JLabel lblResultThrowYut; //결과 이미지
-	public JButton[][] pbtn; //보드 버튼 배열
 	public JButton[] testThrowYutBtns; //도개결윷모 던지기 버튼 배열
+	public JLabel resultYutImageLbl; //결과 이미지
+	public JLabel resultYutTextLbl; //결과 이미지
+	public JButton[][] pbtn; //보드 버튼 배열
 	public JPanel[] players; //플레이어 시작버튼
 	public JButton[] btnPlayerWait;
 	private Controller control; 
@@ -38,27 +39,35 @@ public class MainFrame extends JFrame {
 		control = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1070, 750);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		mainFrame = new JPanel();
+		mainFrame.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(mainFrame);
+		mainFrame.setLayout(null);
 		
 		JPanel panelBoard = createBoard();
 		panelBoard.setBounds(204, 73, 619, 580);
-		contentPane.add(panelBoard);
+		mainFrame.add(panelBoard);
 
 		JPanel panelThrowBtnSet = createThrowSet();
 		panelThrowBtnSet.setBounds(837, 255, 200, 187);
-		contentPane.add(panelThrowBtnSet);
+		mainFrame.add(panelThrowBtnSet);
 										
 		JLabel lblHeadLine = new JLabel("윷놀이");
 		lblHeadLine.setFont(new Font("굴림", Font.BOLD, 21));
 		lblHeadLine.setBounds(15, 12, 133, 64);
-		contentPane.add(lblHeadLine);
+		mainFrame.add(lblHeadLine);
 										
-		lblResultThrowYut = new JLabel();
-		lblResultThrowYut.setBounds(837, 73, 200, 173);
-		contentPane.add(lblResultThrowYut);
+		resultYutImageLbl = new JLabel();
+		resultYutImageLbl.setBounds(837, 73, 200, 173);
+		mainFrame.add(resultYutImageLbl);
+		
+		JLabel yutResult = new JLabel("윷 결과 : ");
+		yutResult.setBounds(837, 400, 200, 173);
+		mainFrame.add(yutResult);
+		
+		resultYutTextLbl = new JLabel("123123123");
+		resultYutTextLbl.setBounds(890, 400, 200, 173);
+		mainFrame.add(resultYutTextLbl);
 
 	}
 
@@ -254,7 +263,7 @@ public class MainFrame extends JFrame {
 
 //		JPanel panelPlayerSet = createPlayerSet(int player_num, int horse_num);
 		panelPlayerSet.setBounds(4, 80, 186, 512);
-		contentPane.add(panelPlayerSet);
+		mainFrame.add(panelPlayerSet);
 
 
 		

@@ -72,14 +72,14 @@ public class Controller implements ActionListener{
 				yut = model.Yut.throwYut();
 				String throwResult = yutname[yut];//³ª´©±â
 		//		board.setIndex(throwResult);
-				mainboard.lblResultThrowYut.setIcon(new ImageIcon(throwResult));
+				mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
 			}
 			
 			for(int i=0; i<6; i++) {
 				if(e.getSource()==mainboard.testThrowYutBtns[i]) {
 					yut = i;
 					String throwResult = yutname[yut];
-					mainboard.lblResultThrowYut.setIcon(new ImageIcon(throwResult));
+					mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
 					
 				}
 			}
