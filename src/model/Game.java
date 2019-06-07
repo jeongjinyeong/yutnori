@@ -99,6 +99,8 @@ public class Game {
 	private int maxPlayer;
 	private int maxHorse;
 	private ArrayList<Player> player = new ArrayList<Player>();
+	
+	private Player tempPlayer;
 //	private int[] yut = new int[6];
 	
 	private HorseSet[][] board = new HorseSet[7][7];
@@ -214,24 +216,21 @@ public class Game {
 		}
 	}
 	
-	public void move(int index_i, int index_j, int player) {
-		for(int i=0; i<board.length; i++) {
-			for(int j=0; j<board[0].length; j++) {
-				if(board[i][j].get_i()==index_i && board[i][j].get_j()==index_j) {
-					horseSet = board[i][j];
-					if(this.player.get(player).getPlayer()==horseSet.getPlayer()) {
-						
-					}
-					else {
-						
-					}
-						
-				}
-				else {
-					this.player.get(player).getHorseSets().
-				}
-			}
-		}
+	public void move(HorseSet horseSet, int destination_i, int destination_j) { //horseSet은 움직일 말을 매개변수로 전달, destination은 이동할 지점의 index
+		tempPlayer = this.player.get(horseSet.getPlayer());
+//		for(int i=0; i<board.length; i++) {
+//			for(int j=0; j<board[0].length; j++) {
+//				if(board[i][j].get_i()==destination_i && board[i][j].get_j()==destination_j) {
+				this.horseSet = board[destination_i][destination_j];
+				this.horseSet.newHorse(horseSet); //destination으로 말 복사
+				
+				//기존 위치에 남아 있는 말 제거
+				this.player.get(horseSet.getPlayer()).getHorseSets().remove(horseSet);
+				
+//					if(this.player.get(player).getPlayer()==horseSet.getPlayer()) {
+//						for(int k=0; k<tempPlayer.getHorseSets().size(); k++) {
+//							if(destination_i==tempPlayer.getHorseSets().get(k).get_i() && destination_j==tempPlayer.getHorseSets().get(k).get_j()) {
+//								if(location_i==-1) { //말이 새로 출발하는 경우		
 	}
 	
 	public ArrayList<Integer> get_location_i(){
