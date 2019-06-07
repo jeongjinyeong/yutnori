@@ -216,21 +216,44 @@ public class Game {
 		}
 	}
 	
-	public void move(HorseSet horseSet, int destination_i, int destination_j) { //horseSet은 움직일 말을 매개변수로 전달, destination은 이동할 지점의 index
-		tempPlayer = this.player.get(horseSet.getPlayer());
-//		for(int i=0; i<board.length; i++) {
-//			for(int j=0; j<board[0].length; j++) {
-//				if(board[i][j].get_i()==destination_i && board[i][j].get_j()==destination_j) {
-				this.horseSet = board[destination_i][destination_j];
-				this.horseSet.newHorse(horseSet); //destination으로 말 복사
-				
-				//기존 위치에 남아 있는 말 제거
-				this.player.get(horseSet.getPlayer()).getHorseSets().remove(horseSet);
-				
-//					if(this.player.get(player).getPlayer()==horseSet.getPlayer()) {
-//						for(int k=0; k<tempPlayer.getHorseSets().size(); k++) {
-//							if(destination_i==tempPlayer.getHorseSets().get(k).get_i() && destination_j==tempPlayer.getHorseSets().get(k).get_j()) {
-//								if(location_i==-1) { //말이 새로 출발하는 경우		
+	public void moveInit(int destination_i, int destination_j) {
+		
+	}
+	
+	public void move(int player, HorseSet horseSet, int destination_i, int destination_j) { //horseSet은 움직일 말을 매개변수로 전달, destination은 이동할 지점의 index
+		if(horseSet == null) {
+			horseSet = new HorseSet(player, new Horse(player));
+		}
+		
+		tempPlayer = this.player.get(horseSet.getPlayer()); //매개변수 horseSet의 player == 현재 턴의 플레이어
+		this.horseSet = board[destination_i][destination_j]; //이동할 지점 저장
+		this.horseSet.newHorse(horseSet); //destination으로 horseSet 복사
+		
+//		//플레이어의 horseSets배열에서 현재 매개변수로 들어온 horseSet의 값 변경
+//		for(int i=0; i<tempPlayer.getHorseSets().size(); i++) {
+//			if(tempPlayer.getHorseSets().get(i)!=horseSet)
+//				//index가 같은 horseSet이 존재한다면 하나로 합쳐준다.0
+//				if(tempPlayer.getHorseSets().get(i).get_i()==horseSet.get_i()&&tempPlayer.getHorseSets().get(i).get_j()==horseSet.get_j()) {
+//					tempPlayer.getHorseSets().get(i).newHorse(horseSet);
+//				}
+//		}
+		
+		//현재 턴의 player의 horseSets배열 업데이트
+		tempPlayer.getHorseSets().set(tempPlayer.getHorseSets().indexOf(horseSet), this.horseSet);
+		for(int i=0; i<tempPlayer.getHorseSets().size(); i++) {
+			for(int j=0; j<tempPlayer.getHorseSets().size(); j++) {
+				if(tempPlayer.getHorseSets().get(i).get_i()==tempPlayer.getHorseSets().get(j).get_i()&&tempPlayer.getHorseSets().get(i).get_j()==tempPlayer.getHorseSets().get(j).get_j()) {
+					tempPlayer.getHorseSets().get(i).newHorse(tempPlayer.getHorseSets().get(j));
+					tempPlayer.getHorseSets().remove(tempPlayer.getHorseSets().get(j));
+				}
+			}
+		}
+		
+		//상대방 말이 destination에 있는 경우 해당 player의 horseSets배열 업데이트
+		
+		//board 상에서 기존 위치에 남아 있는 말 제거
+		this.player.get(horseSet.getPlayer()).getHorseSets().remove(horseSet);
+		//말이 새로 출발하는 경우 현재 턴의 player의 horseNum을 하나 줄여줘야 한다.
 	}
 	
 	public HorseSet getHorseSet(int index_i, int index_j) {

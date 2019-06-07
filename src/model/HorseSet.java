@@ -10,9 +10,21 @@ public class HorseSet {
 
 	public HorseSet() {}
 	
-	//horse를 하나 가지고 HorseSet 생성
 	public HorseSet(int player) {
 		this.player = player;
+		this.i = -1;
+		this.j = -1;
+	}
+	
+	public HorseSet(int player, int i, int j) {
+		this.player = player;
+		this.i = i;
+		this.j = j;
+	}
+	
+	public HorseSet(int player, Horse horse) {
+		this.player = player;
+		horses.add(horse);
 		i = -1;
 		j = -1;
 	}
