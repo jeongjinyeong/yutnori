@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import model.*;
 import view.*;
+import java.util.Arrays;
 
 public class Controller implements ActionListener{
 	
@@ -21,12 +22,11 @@ public class Controller implements ActionListener{
 	private int player_num = 0;
 	private int horse_num = 0;
 	private int play_game = 0;
-	private int[][] selected;
+	private int selected = 0;
 	public Controller() {
 		startpage = new StartPage(this);
 		game = new Game();
 		turn = 0;
-		selected = new int[7][7];
 	}
 	
 	
@@ -92,14 +92,19 @@ public class Controller implements ActionListener{
 						
 						for(int k=0; k<game.get_location_i().size(); k++) {
 							System.out.println("hi");
-							if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k)) {
+							if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k) && selected%2 == 0) {
 								game.destination(i, j, yut);
 								show_possible_Mals();
-								//selected[i][j] = 1;
+								selected++;
+							}
+							else if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k) && selected%2 == 1) {
+								show_now_Mals();
+								selected++;
 							}
 							for(int m=0; m<game.get_destination_i().size(); m++) {
-								if(i==game.get_destination_i().get(m) && j==game.get_destination_j().get(m)) {
+								if(i==game.get_destination_i().get(m) && j==game.get_destination_j().get(m) && selected%2 == 1) {
 									game.move(i, j, turn);
+									selected= 0;
 									show_now_Mals();
 									turn = game.turn(turn);
 								}
