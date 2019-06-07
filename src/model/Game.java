@@ -102,6 +102,8 @@ public class Game {
 //	private int[] yut = new int[6];
 	
 	private HorseSet[][] board = new HorseSet[7][7];
+	private HorseSet horseSet;
+	
 	private ArrayList<Integer> location_i = new ArrayList<Integer>();
 	private ArrayList<Integer> location_j = new ArrayList<Integer>();
 	private ArrayList<Integer> destination_i = new ArrayList<Integer>();
@@ -133,89 +135,100 @@ public class Game {
 		}
 	}
 
-	public void destination(int index_i, int index_j, int yut, Player player) {
-		//HSLocation으로 얻은 horseSet들의 index값 중에 하나를 선택해 move의 매개변수로 전달
+	public void destination(int index_i, int index_j, ArrayList<Integer> yut) {
+		//location으로 얻은 horseSet들의 index값 중에 하나를 선택해 move의 매개변수로 전달
 		//매개변수로 들어온 index값에 대해 이동 가능 지점 반환
-		if(index_j == 6 && index_i > 0) {
-			for(int i=0; i<yut; i++) {
-				if(index_i>0) {
-					if(index_i==4)
+		destination_i.clear();
+		destination_j.clear();
+		for(int y=0; y<yut.size(); y++) {
+			if(index_j == 6 && index_i > 0) {
+				for(int i=0; i<yut.get(y); i++) {
+					if(index_i>0) {
+						if(index_i==4)
+							index_i--;
 						index_i--;
-					index_i--;
-				}
-				else {
-					if(index_j==4)
+					}
+					else {
+						if(index_j==4)
+							index_j--;
 						index_j--;
-					index_j--;
+					}
 				}
 			}
-		}
-		else if(index_i == 0 && index_j == 6) {
-			for(int i=0; i<yut; i++) {
-				if(index_i<6) {
-					index_i++;
-					index_j--;
-				}
-				else {
-					if(index_j==2) {
+			else if(index_i == 0 && index_j == 6) {
+				for(int i=0; i<yut.get(y); i++) {
+					if(index_i<6) {
+						index_i++;
+						index_j--;
+					}
+					else {
+						if(index_j==2) {
+							index_j++;
+						}
 						index_j++;
 					}
+				}
+			}
+			else if(index_i == 0 && index_j > 0) {
+				for(int i=0; i<yut.get(y); i++) {
+					if(index_j>0) {
+						if(index_j==4)
+							index_j--;
+						index_j--;
+					}
+					else {
+						if(index_i==2)
+							index_i++;
+						index_i++;
+					}
+				}
+			}
+			else if(index_i == 0 && index_j == 0) {
+				for(int i=0; i<yut.get(y); i++) {
+					index_i++;
 					index_j++;
 				}
 			}
-		}
-		else if(index_i == 0 && index_j > 0) {
-			for(int i=0; i<yut; i++) {
-				if(index_j>0) {
-					if(index_j==4)
-						index_j--;
-					index_j--;
-				}
-				else {
-					if(index_i==2)
+			else if(index_j == 0 && index_i < 6) {
+				for(int i=0; i<yut.get(y); i++) {
+					if(index_i<6) {
+						if(index_i==2)
+							index_i++;
 						index_i++;
-					index_i++;
+					}
+					else {
+						if(index_j==2)
+							index_j++;
+						index_j++;
+					}
 				}
 			}
-		}
-		else if(index_i == 0 && index_j == 0) {
-			for(int i=0; i<yut; i++) {
-				index_i++;
-				index_j++;
-			}
-		}
-		else if(index_j == 0 && index_i < 6) {
-			for(int i=0; i<yut; i++) {
-				if(index_i<6) {
-					if(index_i==2)
-						index_i++;
-					index_i++;
-				}
-				else {
+			else
+				for(int i=0; i<yut.get(y); i++) {
 					if(index_j==2)
 						index_j++;
 					index_j++;
 				}
-			}
+			destination_i.add(index_i);
+			destination_j.add(index_j);
 		}
-		else
-			for(int i=0; i<yut; i++) {
-				if(index_j==2)
-					index_j++;
-				index_j++;
-			}
 	}
 	
-	public void move(int index_i, int index_j, int p) {
+	public void move(int index_i, int index_j, int player) {
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[0].length; j++) {
 				if(board[i][j].get_i()==index_i && board[i][j].get_j()==index_j) {
-					if(player.get(p).getPlayer()==board[i][j].getPlayer()) {
-						for(int k=0; k<player.get(p).getHorseSets().size(); k++) {
-							player.get(p).getHorseSets().get(k).get_i();
-						}
+					horseSet = board[i][j];
+					if(this.player.get(player).getPlayer()==horseSet.getPlayer()) {
+						
+					}
+					else {
+						
 					}
 						
+				}
+				else {
+					this.player.get(player).getHorseSets().
 				}
 			}
 		}
