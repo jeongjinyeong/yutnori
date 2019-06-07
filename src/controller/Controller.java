@@ -21,7 +21,7 @@ public class Controller implements ActionListener{
 	private model.Game game;
 	private MainFrame mainboard;
 	private StartPage startpage;
-	String[] yut_name = {"»ªµµ", "µµ", "°³", "°É", "À·", "¸ð"};
+	String[] yut_name = {"ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"};
 	String yut_string = "";
 	String[] yut_img_name = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
 	private int turn;
@@ -182,3 +182,4 @@ public class Controller implements ActionListener{
 }	
 		
 
+ 
