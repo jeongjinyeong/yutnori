@@ -11,10 +11,13 @@ import javax.swing.JButton;
 
 public class ResultPage extends JFrame {
 	// 버튼이 눌러지면 만들어지는 새 창을 정의한 클래스
-	JButton restart;
-	JButton close;
-	Controller control = new Controller();
-	ResultPage(Controller controller, int num) {
+	public JButton restart;
+	public JButton close;
+	private Controller control;
+	
+	
+	
+	public ResultPage(Controller controller, int num) {
 		control = controller;
         setTitle("결과");
         setBounds(500, 400, 300, 200);
