@@ -10,6 +10,9 @@ import javax.swing.ImageIcon;
 import model.*;
 import view.*;
 import java.util.Arrays;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class Controller implements ActionListener{
 	
@@ -19,10 +22,11 @@ public class Controller implements ActionListener{
 	private StartPage startpage;
 	String[] yutname = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
 	private int turn;
-	private int player_num = 0;
-	private int horse_num = 0;
+	private int player_num = 2;
+	private int horse_num = 2;
 	private int play_game = 0;
 	private int selected = 0;
+	LineBorder red = new LineBorder(Color.RED,3);
 	public Controller() {
 		startpage = new StartPage(this);
 		game = new Game();
@@ -93,22 +97,29 @@ public class Controller implements ActionListener{
 						for(int k=0; k<game.get_location_i().size(); k++) {
 							System.out.println("hi");
 							if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k) && selected%2 == 0) {
+								show_now_Mals();
 								game.destination(i, j, yut);
 								show_possible_Mals();
 								selected++;
 							}
-							else if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k) && selected%2 == 1) {
-								show_now_Mals();
-								selected++;
-							}
-							for(int m=0; m<game.get_destination_i().size(); m++) {
-								if(i==game.get_destination_i().get(m) && j==game.get_destination_j().get(m) && selected%2 == 1) {
-									game.move(i, j, turn);
-									selected= 0;
-									show_now_Mals();
-									turn = game.turn(turn);
+							else if(selected %2 == 1) {
+								for(int m=0; m<game.get_destination_i().size(); m++) {
+									if(i==game.get_destination_i().get(m) && j==game.get_destination_j().get(m) && selected%2 == 1) {
+										game.move(i, j, turn);
+										selected= 0;
+										show_now_Mals();
+										turn = game.turn(turn);
+										break;
+									}
 								}
-							}	
+							}
+							else if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k) && selected%2 == 1) {
+								
+								show_now_Mals();
+								game.destination(i, j, yut);
+								show_possible_Mals();
+								selected = 1;
+							}
 						}
 					}
 				}
@@ -119,7 +130,7 @@ public class Controller implements ActionListener{
 		for(int m=0; m<game.get_destination_i().size(); m++) {
 			int x = game.get_destination_i().get(m);
 			int y = game.get_destination_j().get(m);
-			mainboard.pbtn[x][y].setText("여기로 올수 있음");
+			mainboard.pbtn[x][y].setBorder(red);
 		}
 	}
 		
@@ -131,6 +142,7 @@ public class Controller implements ActionListener{
 				int x = game.get_location_i().get(j);
 				int y = game.get_location_j().get(j);
 				mainboard.pbtn[x][y].setText("말 여기있음");
+				mainboard.pbtn[x][y].setBorder(UIManager.getBorder("Button.border"));
 			}
 		}
 	}
