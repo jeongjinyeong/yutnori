@@ -21,7 +21,9 @@ public class Controller implements ActionListener{
 	private model.Game game;
 	private MainFrame mainboard;
 	private StartPage startpage;
-	String[] yutname = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
+	String[] yut_name = {"»ªµµ", "µµ", "°³", "°É", "À·", "¸ð"};
+	String yut_string = "";
+	String[] yut_img_name = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
 	private int turn;
 	private int player_num = 2;
 	private int horse_num = 2;
@@ -30,6 +32,7 @@ public class Controller implements ActionListener{
 	private int game_winner = 0;
 	private int temp_idx_i = 0;
 	private int temp_idx_j = 0;
+	
 	LineBorder red = new LineBorder(Color.RED,3);
 	public Controller() {
 		startpage = new StartPage(this);
@@ -76,18 +79,22 @@ public class Controller implements ActionListener{
 				yut.add(model.Yut.throwYut());
 				for(int i=0; i<yut.size(); i++) {
 				
-					String throwResult = yutname[yut.get(i)];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					String throwResult = yut_img_name[yut.get(i)];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			//		board.setIndex(throwResult);
-				mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
+					mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
+					yut_string = yut_string + yut_name[yut.get(i)];
 				}
+				mainboard.resultYutTextLbl.setText(yut_string);
 			}
 			for(int i=0; i<6; i++) {
 				if(e.getSource()==mainboard.testThrowYutBtns[i]) {
 					yut.add(i);
 					for(int j=0; j<yut.size(); j++) {
-						String throwResult = yutname[yut.get(j)];
-					mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
+						String throwResult = yut_img_name[yut.get(j)];
+						mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
+						yut_string = yut_string + yut_name[i];
 					}
+					mainboard.resultYutTextLbl.setText(yut_string);
 				}
 			}
 		
@@ -119,6 +126,7 @@ public class Controller implements ActionListener{
 										selected= 0;
 										show_now_Mals();
 										turn = game.turn(turn);
+										yut_string = "";
 										break;
 									}
 								}
@@ -160,8 +168,10 @@ public class Controller implements ActionListener{
 	}
 	
 //	public void end_game(int turn) {
-//		if(game.get_game_status == 1) {
+//		if(game.get_game_status() == 1) {
 //			game_winner = turn;
+//			mainboard.setVisible(false);
+//			mainboard.dispose();
 //			
 //		}
 //	}

@@ -65,7 +65,7 @@ public class MainFrame extends JFrame {
 		yutResult.setBounds(837, 400, 200, 173);
 		mainFrame.add(yutResult);
 		
-		resultYutTextLbl = new JLabel("123123123");
+		resultYutTextLbl = new JLabel("");
 		resultYutTextLbl.setBounds(890, 400, 200, 173);
 		mainFrame.add(resultYutTextLbl);
 
