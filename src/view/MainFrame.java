@@ -267,39 +267,8 @@ public class MainFrame extends JFrame {
 
 		
 	}
-	public void createDialog(int num) {
-		new dialog(num);
-	}
+
 	
-	class dialog extends JFrame {
-	    // 버튼이 눌러지면 만들어지는 새 창을 정의한 클래스
-		JPanel dialog;
-		
-	    dialog(int num) {
-	        setTitle("결과");
-	        setBounds(500, 400, 300, 200);
-			dialog = new JPanel();
-			dialog.setBorder(new EmptyBorder(5, 5, 5, 5));
-			setContentPane(dialog);
-			dialog.setLayout(null);
-	        setContentPane(dialog);
-	        
-	        JLabel NewLabel = new JLabel("Player"+num+"이 이겼습니다.");
-	        NewLabel.setBounds(100, 20, 200, 30);
-	        dialog.add(NewLabel);
-	        
-	        JButton restart = new JButton("재시작");
-	        restart.setBounds(60, 60, 80, 50);
-	        dialog.add(restart);
-	        
-	        JButton close = new JButton("종료");
-	        close.setBounds(160, 60, 80, 50);
-	        dialog.add(close);
-	        
-	        setResizable(false);
-	        setVisible(true);
-	    }
-	}
 }
 
 
