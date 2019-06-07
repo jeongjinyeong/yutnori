@@ -185,6 +185,8 @@ public class MainFrame extends JFrame {
 					}
 				}
 				pbtn[i][j].addActionListener(control);
+				pbtn[i][j].setContentAreaFilled(false);
+//				pbtn[i][j].setBorderPainted(false); 
 			}
 		}
 
@@ -227,7 +229,6 @@ public class MainFrame extends JFrame {
 		panelPlayerSet.setLayout(null);
 		players = new JPanel[player_num];
 		btnPlayerWait = new JButton[player_num];
-		System.out.println(players[0]);
 		for(int i=0; i< player_num; i++) {
 			players[i] = new JPanel();
 			players[i].setBounds(0, 12+(116*i), 183, 104);
@@ -243,7 +244,8 @@ public class MainFrame extends JFrame {
 			btnPlayerWait[i].setIcon(new ImageIcon("./img/"+i+"_"+horse_num+".png"));
 			players[i].add(btnPlayerWait[i]);
 			btnPlayerWait[i].addActionListener(control);
-			
+			btnPlayerWait[i].setContentAreaFilled(false);
+//			pbtn[i][j].setBorderPainted(false); 
 
 			JLabel lblplayerFin = new JLabel("player"+i+"Fin");
 			lblplayerFin.setBounds(99, 28, 70, 64);

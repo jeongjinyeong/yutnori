@@ -19,8 +19,8 @@ public class Controller implements ActionListener{
 	private StartPage startpage;
 	String[] yutname = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
 	private int turn;
-	private int player_num = 0;
-	private int horse_num = 0;
+	private int player_num = 2;
+	private int horse_num = 2;
 	private int play_game = 0;
 	private int selected = 0;
 	public Controller() {
