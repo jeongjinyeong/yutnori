@@ -227,6 +227,9 @@ public class Game {
 		
 		tempPlayer = this.player.get(horseSet.getPlayer()); //매개변수 horseSet의 player == 현재 턴의 플레이어
 		this.horseSet = board[destination_i][destination_j]; //이동할 지점 저장
+		if(this.horseSet == null) {
+			this.horseSet = new HorseSet();
+		}
 		this.horseSet.newHorse(horseSet); //destination으로 horseSet 복사
 		
 //		//플레이어의 horseSets배열에서 현재 매개변수로 들어온 horseSet의 값 변경
