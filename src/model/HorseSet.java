@@ -29,6 +29,13 @@ public class HorseSet {
 		j = -1;
 	}
 	
+	public HorseSet(HorseSet horseSet) {
+		this.player = horseSet.getPlayer();
+		horses = horseSet.getHorses();
+		i = horseSet.get_i();
+		j = horseSet.get_j();
+	}
+	
 //	���ο� HorseSet�� ���� ��� -> player �� �� ������ �߰�(�� ����), �ٸ��� ��ü
 //	ArrayList���� ��ü ������ ��� deep copy�� �Ͽ��� ���� ��ü�� �νĵǹǷ� ���� �����ڸ� ���� ��������� �Ѵ�.
 	public void newHorse(HorseSet f) {
@@ -46,6 +53,10 @@ public class HorseSet {
 		}
 	}
 
+	public void putHorse(Horse horse) {
+		this.horses.add(horse);
+	}
+	
 	public void setIndex(int i, int j) {
 		this.i = i;
 		this.j = j;

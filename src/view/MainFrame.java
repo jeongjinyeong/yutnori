@@ -109,7 +109,7 @@ public class MainFrame extends JFrame {
 						y= 400;
 					}
 					if( i == 4 || i ==5) {
-						offset = i-4;
+						offset = 5-i;
 						pbtn[i][j].setBounds(x , y - (89*offset), 45, 45); //왼쪽 세로 줄 
 						panelBoard.add(pbtn[i][j]);
 					}
