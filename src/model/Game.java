@@ -127,13 +127,13 @@ public class Game {
 		return (player++)%maxPlayer;
 	}
 	
-	public void location(Player player) {
+	public void location(int player) {
 		//player의 horseSets를 탐색해서 각 horseSet의 인덱스 값을 저장.
 		location_i.clear();
 		location_j.clear();
-		for(int i=0; i<player.getHorseSets().size(); i++) {
-			location_i.add(player.getHorseSets().get(i).get_i());
-			location_j.add(player.getHorseSets().get(i).get_j());
+		for(int i=0; i<this.player.get(player).getHorseSets().size(); i++) {
+			location_i.add(this.player.get(player).getHorseSets().get(i).get_i());
+			location_j.add(this.player.get(player).getHorseSets().get(i).get_j());
 		}
 	}
 
@@ -231,6 +231,10 @@ public class Game {
 //						for(int k=0; k<tempPlayer.getHorseSets().size(); k++) {
 //							if(destination_i==tempPlayer.getHorseSets().get(k).get_i() && destination_j==tempPlayer.getHorseSets().get(k).get_j()) {
 //								if(location_i==-1) { //말이 새로 출발하는 경우		
+	}
+	
+	public HorseSet getHorseSet(int index_i, int index_j) {
+		return board[index_i][index_j];
 	}
 	
 	public ArrayList<Integer> get_location_i(){
