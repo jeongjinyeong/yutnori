@@ -22,10 +22,10 @@ import java.awt.event.ActionEvent;
 public class MainFrame extends JFrame {
 
 	public JPanel contentPane;
-	public JButton buttonThrowYut; //랜덤윷던지기 버튼
+	public JButton ramdomThrowYutBtn; //랜덤윷던지기 버튼
 	public JLabel lblResultThrowYut; //결과 이미지
 	public JButton[][] pbtn; //보드 버튼 배열
-	public JButton[] throwBtns; //도개결윷모 던지기 버튼 배열
+	public JButton[] testThrowYutBtns; //도개결윷모 던지기 버튼 배열
 	public JPanel[] players; //플레이어 시작버튼
 	public JButton[] btnPlayerWait;
 	private Controller control; 
@@ -185,6 +185,8 @@ public class MainFrame extends JFrame {
 					}
 				}
 				pbtn[i][j].addActionListener(control);
+				pbtn[i][j].setContentAreaFilled(false);
+//				pbtn[i][j].setBorderPainted(false); 
 			}
 		}
 
@@ -199,21 +201,21 @@ public class MainFrame extends JFrame {
 		
 		JPanel panelBtnSetOfThrow = new JPanel();
 		panelBtnSetOfThrow.setLayout(null);
-		throwBtns = new JButton[6];
+		testThrowYutBtns = new JButton[6];
 		String[] throwString = {"빽도","도","개","걸","윷","모"};
-		buttonThrowYut = new JButton("윷 던지기");
-		buttonThrowYut.setBounds(0, 0, 186, 54);
-		panelBtnSetOfThrow.add(buttonThrowYut);
-		buttonThrowYut.setBackground(UIManager.getColor("Button.focus"));
-		buttonThrowYut.setFont(new Font("굴림", Font.BOLD, 30));
-		buttonThrowYut.addActionListener(control);
+		ramdomThrowYutBtn = new JButton("윷 던지기");
+		ramdomThrowYutBtn.setBounds(0, 0, 186, 54);
+		panelBtnSetOfThrow.add(ramdomThrowYutBtn);
+		ramdomThrowYutBtn.setBackground(UIManager.getColor("Button.focus"));
+		ramdomThrowYutBtn.setFont(new Font("굴림", Font.BOLD, 30));
+		ramdomThrowYutBtn.addActionListener(control);
 		
 		for(int i=0; i<3; i++) {
 			for(int j=0; j<2; j++) {
-				throwBtns[(i*2)+j] = new JButton(throwString[(i*2)+j]);
-				throwBtns[(i*2)+j].setBounds(0 + (j*106), 70 + (i*40 ), 80, 27);
-				panelBtnSetOfThrow.add(throwBtns[(i*2)+j]);
-				throwBtns[(i*2)+j].addActionListener(control);
+				testThrowYutBtns[(i*2)+j] = new JButton(throwString[(i*2)+j]);
+				testThrowYutBtns[(i*2)+j].setBounds(0 + (j*106), 70 + (i*40 ), 80, 27);
+				panelBtnSetOfThrow.add(testThrowYutBtns[(i*2)+j]);
+				testThrowYutBtns[(i*2)+j].addActionListener(control);
 			}
 		}
 		
@@ -227,7 +229,6 @@ public class MainFrame extends JFrame {
 		panelPlayerSet.setLayout(null);
 		players = new JPanel[player_num];
 		btnPlayerWait = new JButton[player_num];
-		System.out.println(players[0]);
 		for(int i=0; i< player_num; i++) {
 			players[i] = new JPanel();
 			players[i].setBounds(0, 12+(116*i), 183, 104);
@@ -243,7 +244,8 @@ public class MainFrame extends JFrame {
 			btnPlayerWait[i].setIcon(new ImageIcon("./img/"+i+"_"+horse_num+".png"));
 			players[i].add(btnPlayerWait[i]);
 			btnPlayerWait[i].addActionListener(control);
-			
+			btnPlayerWait[i].setContentAreaFilled(false);
+//			pbtn[i][j].setBorderPainted(false); 
 
 			JLabel lblplayerFin = new JLabel("player"+i+"Fin");
 			lblplayerFin.setBounds(99, 28, 70, 64);

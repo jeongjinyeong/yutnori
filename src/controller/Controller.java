@@ -68,7 +68,7 @@ public class Controller implements ActionListener{
 				}
 			}
 			
-			if(e.getSource()==mainboard.buttonThrowYut) {
+			if(e.getSource()==mainboard.ramdomThrowYutBtn) {
 				yut = model.Yut.throwYut();
 				String throwResult = yutname[yut];//³ª´©±â
 		//		board.setIndex(throwResult);
@@ -76,7 +76,7 @@ public class Controller implements ActionListener{
 			}
 			
 			for(int i=0; i<6; i++) {
-				if(e.getSource()==mainboard.throwBtns[i]) {
+				if(e.getSource()==mainboard.testThrowYutBtns[i]) {
 					yut = i;
 					String throwResult = yutname[yut];
 					mainboard.lblResultThrowYut.setIcon(new ImageIcon(throwResult));
