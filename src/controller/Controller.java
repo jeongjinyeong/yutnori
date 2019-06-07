@@ -21,6 +21,7 @@ public class Controller implements ActionListener{
 	private model.Game game;
 	private MainFrame mainboard;
 	private StartPage startpage;
+	private ResultPage resultpage;
 	String[] yut_name = {"ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"};
 	String yut_string = "";
 	String[] yut_img_name = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
@@ -70,7 +71,8 @@ public class Controller implements ActionListener{
 		else if(play_game == 1) {
 			for(int i=0; i<player_num; i++) {
 				if(e.getSource()==mainboard.btnPlayerWait[i]) {
-					game.move(null, 6, 6);
+
+					game.move(turn, null, 6, 6);
 					show_now_Mals();
 				}
 			}
@@ -122,7 +124,7 @@ public class Controller implements ActionListener{
 								for(int m=0; m<game.get_destination_i().size(); m++) {
 									if(i==game.get_destination_i().get(m) && j==game.get_destination_j().get(m) && selected%2 == 1) {
 										
-										game.move(game.getHorseSet(temp_idx_i, temp_idx_j), i, j);
+										game.move(turn, game.getHorseSet(temp_idx_i, temp_idx_j), i, j);
 										selected= 0;
 										show_now_Mals();
 										turn = game.turn(turn);
@@ -161,7 +163,7 @@ public class Controller implements ActionListener{
 			for(int j=0; j<game.get_location_i().size(); j++) {
 				int x = game.get_location_i().get(j);
 				int y = game.get_location_j().get(j);
-				mainboard.pbtn[x][y].setText("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+				mainboard.pbtn[x][y].setText("¤¾¤·");
 				mainboard.pbtn[x][y].setBorder(UIManager.getBorder("Button.border"));
 			}
 		}
@@ -172,6 +174,8 @@ public class Controller implements ActionListener{
 //			game_winner = turn;
 //			mainboard.setVisible(false);
 //			mainboard.dispose();
+//			play_game = 2;
+//			resultpage = new ResultPage(this, turn);
 //			
 //		}
 //	}
