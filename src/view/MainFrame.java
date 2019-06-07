@@ -15,6 +15,7 @@ import java.awt.Panel;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -195,7 +196,6 @@ public class MainFrame extends JFrame {
 				}
 				pbtn[i][j].addActionListener(control);
 				pbtn[i][j].setContentAreaFilled(false);
-//				pbtn[i][j].setBorderPainted(false); 
 			}
 		}
 
@@ -254,19 +254,55 @@ public class MainFrame extends JFrame {
 			players[i].add(btnPlayerWait[i]);
 			btnPlayerWait[i].addActionListener(control);
 			btnPlayerWait[i].setContentAreaFilled(false);
-//			pbtn[i][j].setBorderPainted(false); 
+
 
 			JLabel lblplayerFin = new JLabel("player"+i+"Fin");
 			lblplayerFin.setBounds(99, 28, 70, 64);
 			players[i].add(lblplayerFin);
 		}
 
-//		JPanel panelPlayerSet = createPlayerSet(int player_num, int horse_num);
 		panelPlayerSet.setBounds(4, 80, 186, 512);
 		mainFrame.add(panelPlayerSet);
 
 
 		
 	}
+	public void createDialog(int num) {
+		new dialog(num);
+	}
+	
+	class dialog extends JFrame {
+	    // 버튼이 눌러지면 만들어지는 새 창을 정의한 클래스
+		JPanel dialog;
+		
+	    dialog(int num) {
+	        setTitle("결과");
+	        setBounds(500, 400, 300, 200);
+			dialog = new JPanel();
+			dialog.setBorder(new EmptyBorder(5, 5, 5, 5));
+			setContentPane(dialog);
+			dialog.setLayout(null);
+	        setContentPane(dialog);
+	        
+	        JLabel NewLabel = new JLabel("Player"+num+"이 이겼습니다.");
+	        NewLabel.setBounds(100, 20, 200, 30);
+	        dialog.add(NewLabel);
+	        
+	        JButton restart = new JButton("재시작");
+	        restart.setBounds(60, 60, 80, 50);
+	        dialog.add(restart);
+	        
+	        JButton close = new JButton("종료");
+	        close.setBounds(160, 60, 80, 50);
+	        dialog.add(close);
+	        
+	        setResizable(false);
+	        setVisible(true);
+	    }
+	}
 }
+
+
+ 
+
 

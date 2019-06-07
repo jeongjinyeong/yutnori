@@ -73,6 +73,7 @@ public class Controller implements ActionListener{
 				String throwResult = yutname[yut];//나누기
 		//		board.setIndex(throwResult);
 				mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
+				mainboard.createDialog(1); //이긴 플레이어
 			}
 			
 			for(int i=0; i<6; i++) {
@@ -153,3 +154,4 @@ public class Controller implements ActionListener{
 }	
 		
 
+ 
