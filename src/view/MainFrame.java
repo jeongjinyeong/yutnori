@@ -30,6 +30,7 @@ public class MainFrame extends JFrame {
 	public JButton[][] pbtn; //보드 버튼 배열
 	public JPanel[] players; //플레이어 시작버튼
 	public JButton[] btnPlayerWait;
+	public JLabel nowTurnlbl;
 	private Controller control; 
 	/**
 	 * Create the frame.
@@ -55,9 +56,19 @@ public class MainFrame extends JFrame {
 										
 		JLabel lblHeadLine = new JLabel("윷놀이");
 		lblHeadLine.setFont(new Font("굴림", Font.BOLD, 21));
-		lblHeadLine.setBounds(15, 12, 133, 64);
+		lblHeadLine.setBounds(15, 12, 100, 54);
 		mainFrame.add(lblHeadLine);
-										
+					
+		JLabel lblTurnText = new JLabel("현재 턴 ");
+		lblTurnText.setFont(new Font("굴림", Font.BOLD, 21));
+		lblTurnText.setBounds(200, 12, 100, 64);
+		mainFrame.add(lblTurnText);
+		
+		nowTurnlbl = new JLabel("");
+		nowTurnlbl.setFont(new Font("굴림", Font.BOLD, 21));
+		nowTurnlbl.setBounds(280, 12, 100, 64);
+		mainFrame.add(nowTurnlbl);
+		
 		resultYutImageLbl = new JLabel();
 		resultYutImageLbl.setBounds(837, 73, 200, 173);
 		mainFrame.add(resultYutImageLbl);
