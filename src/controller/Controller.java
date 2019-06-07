@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import model.*;
 import view.*;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -16,7 +18,6 @@ import javax.swing.UIManager;
 
 public class Controller implements ActionListener{
 	
-	private model.Board board;
 	private model.Game game;
 	private MainFrame mainboard;
 	private StartPage startpage;
@@ -26,6 +27,9 @@ public class Controller implements ActionListener{
 	private int horse_num = 2;
 	private int play_game = 0;
 	private int selected = 0;
+	private int game_winner = 0;
+	private int temp_idx_i = 0;
+	private int temp_idx_j = 0;
 	LineBorder red = new LineBorder(Color.RED,3);
 	public Controller() {
 		startpage = new StartPage(this);
@@ -36,7 +40,7 @@ public class Controller implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int yut = 0;
+		ArrayList<Integer> yut = new ArrayList();
 		if(play_game==0) {
 			if(e.getSource()==startpage.playerCombo) {
 				String temp_player = startpage.playerCombo.getSelectedItem().toString();
@@ -63,25 +67,27 @@ public class Controller implements ActionListener{
 		else if(play_game == 1) {
 			for(int i=0; i<player_num; i++) {
 				if(e.getSource()==mainboard.btnPlayerWait[i]) {
-					game.move(6, 6, turn);
+					game.move(null, 6, 6);
 					show_now_Mals();
 				}
 			}
 			
 			if(e.getSource()==mainboard.ramdomThrowYutBtn) {
-				yut = model.Yut.throwYut();
-				String throwResult = yutname[yut];//³ª´©±â
-		//		board.setIndex(throwResult);
+				yut.add(model.Yut.throwYut());
+				for(int i=0; i<yut.size(); i++) {
+				
+					String throwResult = yutname[yut.get(i)];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			//		board.setIndex(throwResult);
 				mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
-				mainboard.createDialog(1); //ÀÌ±ä ÇÃ·¹ÀÌ¾î
+				mainboard.createDialog(1); //ï¿½Ì±ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½
 			}
-			
 			for(int i=0; i<6; i++) {
 				if(e.getSource()==mainboard.testThrowYutBtns[i]) {
-					yut = i;
-					String throwResult = yutname[yut];
+					yut.add(i);
+					for(int j=0; j<yut.size(); j++) {
+						String throwResult = yutname[yut.get(j)];
 					mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
-					
+					}
 				}
 			}
 		
@@ -90,7 +96,7 @@ public class Controller implements ActionListener{
 					if(e.getSource() == mainboard.pbtn[i][j]) {
 						game.location(turn);
 						show_now_Mals();
-						//Å×½ºÆ®
+						//ï¿½×½ï¿½Æ®
 						System.out.println(game.get_location_i().size());
 						System.out.println(game.get_location_i().get(0));
 						System.out.println(game.get_location_j().get(0));
@@ -100,13 +106,16 @@ public class Controller implements ActionListener{
 							if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k) && selected%2 == 0) {
 								show_now_Mals();
 								game.destination(i, j, yut);
+								temp_idx_i = i;
+								temp_idx_j = j;
 								show_possible_Mals();
 								selected++;
 							}
 							else if(selected %2 == 1) {
 								for(int m=0; m<game.get_destination_i().size(); m++) {
 									if(i==game.get_destination_i().get(m) && j==game.get_destination_j().get(m) && selected%2 == 1) {
-										game.move(i, j, turn);
+										
+										game.move(game.getHorseSet(temp_idx_i, temp_idx_j), i, j);
 										selected= 0;
 										show_now_Mals();
 										turn = game.turn(turn);
@@ -118,6 +127,8 @@ public class Controller implements ActionListener{
 								
 								show_now_Mals();
 								game.destination(i, j, yut);
+								temp_idx_i = i;
+								temp_idx_j = j;
 								show_possible_Mals();
 								selected = 1;
 							}
@@ -142,11 +153,18 @@ public class Controller implements ActionListener{
 			for(int j=0; j<game.get_location_i().size(); j++) {
 				int x = game.get_location_i().get(j);
 				int y = game.get_location_j().get(j);
-				mainboard.pbtn[x][y].setText("¸» ¿©±âÀÖÀ½");
+				mainboard.pbtn[x][y].setText("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 				mainboard.pbtn[x][y].setBorder(UIManager.getBorder("Button.border"));
 			}
 		}
 	}
+	
+//	public void end_game(int turn) {
+//		if(game.get_game_status == 1) {
+//			game_winner = turn;
+//			
+//		}
+//	}
 
 	public static void main(String[] args) {
 		new Controller();
