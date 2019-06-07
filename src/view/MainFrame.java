@@ -26,6 +26,8 @@ public class MainFrame extends JFrame {
 	public JLabel lblResultThrowYut; //결과 이미지
 	public JButton[][] pbtn; //보드 버튼 배열
 	public JButton[] throwBtns; //도개결윷모 던지기 버튼 배열
+	public JPanel[] players; //플레이어 시작버튼
+	public JButton[] btnPlayerWait;
 	private Controller control; 
 	/**
 	 * Create the frame.
@@ -44,10 +46,6 @@ public class MainFrame extends JFrame {
 		JPanel panelBoard = createBoard();
 		panelBoard.setBounds(204, 73, 619, 580);
 		contentPane.add(panelBoard);
-
-//		JPanel panelPlayerSet = createPlayerSet(int player_num, int horse_num);
-//		panelPlayerSet.setBounds(4, 80, 186, 512);
-//		contentPane.add(panelPlayerSet);
 
 		JPanel panelThrowBtnSet = createThrowSet();
 		panelThrowBtnSet.setBounds(837, 255, 200, 187);
@@ -223,79 +221,40 @@ public class MainFrame extends JFrame {
 		return panelBtnSetOfThrow;
 		
 	}
-	public JPanel createPlayerSet(int player_num, int horse_num) {
+
+	public void createPlayerSet(int player_num, int horse_num) {
 		JPanel panelPlayerSet = new JPanel();
 		panelPlayerSet.setLayout(null);
-		
-		JPanel panelPlayer1 = new JPanel();
-		panelPlayer1.setBounds(0, 12, 183, 104);
-		panelPlayerSet.add(panelPlayer1);
-		panelPlayer1.setLayout(null);
-		
-		JLabel lblPlayer1 = new JLabel("player1");
-		lblPlayer1.setBounds(5, 9, 62, 18);
-		panelPlayer1.add(lblPlayer1);
-		
-		JButton btnPlayer1wait = new JButton("player1Wait");
-		btnPlayer1wait.setBounds(5, 25, 88, 67);
-		panelPlayer1.add(btnPlayer1wait);
-		
-		JLabel lblplayer1Fin = new JLabel("player2Fin");
-		lblplayer1Fin.setBounds(99, 28, 70, 64);
-		panelPlayer1.add(lblplayer1Fin);
-		
-		JPanel panelPlayer2 = new JPanel();
-		panelPlayer2.setBounds(0, 128, 183, 104);
-		panelPlayerSet.add(panelPlayer2);
-		panelPlayer2.setLayout(null);
-		
-		JLabel lblPlayer2 = new JLabel("player2");
-		lblPlayer2.setBounds(5, 9, 62, 18);
-		panelPlayer2.add(lblPlayer2);
-		
-		JButton btnPlayer2wait = new JButton("player2Wait");
-		btnPlayer2wait.setBounds(5, 25, 88, 67);
-		panelPlayer2.add(btnPlayer2wait);
-		
-		JLabel lblplayer2Fin = new JLabel("player2Fin");
-		lblplayer2Fin.setBounds(99, 28, 70, 64);
-		panelPlayer2.add(lblplayer2Fin);
-		
-		JPanel panelPlayer3 = new JPanel();
-		panelPlayer3.setBounds(0, 254, 183, 104);
-		panelPlayerSet.add(panelPlayer3);
-		panelPlayer3.setLayout(null);
-		
-		JLabel lblPlayer3 = new JLabel("player3");
-		lblPlayer3.setBounds(5, 9, 62, 18);
-		panelPlayer3.add(lblPlayer3);
-		
-		JButton btnPlayer3wait = new JButton("player3Wait");
-		btnPlayer3wait.setBounds(5, 25, 88, 67);
-		panelPlayer3.add(btnPlayer3wait);
-		
-		JLabel lblplayer3Fin = new JLabel("player3Fin");
-		lblplayer3Fin.setBounds(99, 28, 70, 64);
-		panelPlayer3.add(lblplayer3Fin);
-		
-		JPanel panelPlayer4 = new JPanel();
-		panelPlayer4.setBounds(0, 385, 183, 104);
-		panelPlayerSet.add(panelPlayer4);
-		panelPlayer4.setLayout(null);
-		
-		JLabel lblPlayer4 = new JLabel("player4");
-		lblPlayer4.setBounds(5, 9, 62, 18);
-		panelPlayer4.add(lblPlayer4);
-		
-		JButton btnPlayer4wait = new JButton("player4Wait");
-		btnPlayer4wait.setBounds(5, 25, 88, 67);
-		panelPlayer4.add(btnPlayer4wait);
-		
-		JLabel lblplayer4Fin = new JLabel("player4Fin");
-		lblplayer4Fin.setBounds(99, 28, 70, 64);
-		panelPlayer4.add(lblplayer4Fin);
-		
-		return panelPlayerSet;
+		players = new JPanel[player_num];
+		btnPlayerWait = new JButton[player_num];
+		System.out.println(players[0]);
+		for(int i=0; i< player_num; i++) {
+			players[i] = new JPanel();
+			players[i].setBounds(0, 12+(116*i), 183, 104);
+			panelPlayerSet.add(players[i]);
+			players[i].setLayout(null);
+			
+			JLabel lblPlayer = new JLabel("player"+i);
+			lblPlayer.setBounds(5, 9, 62, 18);
+			players[i].add(lblPlayer);
+			
+			btnPlayerWait[i] = new JButton();
+			btnPlayerWait[i].setBounds(5, 25, 88, 67);
+			btnPlayerWait[i].setIcon(new ImageIcon("./img/"+i+"_"+horse_num+".png"));
+			players[i].add(btnPlayerWait[i]);
+			btnPlayerWait[i].addActionListener(control);
+			
+
+			JLabel lblplayerFin = new JLabel("player"+i+"Fin");
+			lblplayerFin.setBounds(99, 28, 70, 64);
+			players[i].add(lblplayerFin);
+		}
+
+//		JPanel panelPlayerSet = createPlayerSet(int player_num, int horse_num);
+		panelPlayerSet.setBounds(4, 80, 186, 512);
+		contentPane.add(panelPlayerSet);
+
+
 		
 	}
 }

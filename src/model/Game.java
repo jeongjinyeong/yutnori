@@ -112,12 +112,16 @@ public class Game {
 	
 
 	public void setPlayer(int maxPlayer) {
+		System.out.println("player");
+		System.out.println(maxPlayer);
 		for(int p=0; p<maxPlayer; p++) {
-			player.add(new Player(p, 1));
+			player.add(new Player(p));
 		}
 	}
 
 	public void setMaxHorse(int maxHorse) {
+		System.out.println("horse");
+		System.out.println(maxHorse);
 		this.maxHorse = maxHorse;
 	}
 	
@@ -210,6 +214,7 @@ public class Game {
 	}
 	
 	public void move(int index_i, int index_j, int p) {
+		System.out.println("hi");
 		for(int i=0; i<board.length; i++) {
 			for(int j=0; j<board[0].length; j++) {
 				if(board[i][j].get_i()==index_i && board[i][j].get_j()==index_j) {
