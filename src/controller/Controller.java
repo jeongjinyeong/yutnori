@@ -76,10 +76,9 @@ public class Controller implements ActionListener{
 				yut.add(model.Yut.throwYut());
 				for(int i=0; i<yut.size(); i++) {
 				
-					String throwResult = yutname[yut.get(i)];//³ª´©±â
+					String throwResult = yutname[yut.get(i)];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			//		board.setIndex(throwResult);
-					mainboard.lblResultThrowYut.setIcon(new ImageIcon(throwResult));
-			
+				mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
 				}
 			}
 			for(int i=0; i<6; i++) {
@@ -87,7 +86,7 @@ public class Controller implements ActionListener{
 					yut.add(i);
 					for(int j=0; j<yut.size(); j++) {
 						String throwResult = yutname[yut.get(j)];
-						mainboard.lblResultThrowYut.setIcon(new ImageIcon(throwResult));
+					mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
 					}
 				}
 			}
@@ -97,7 +96,7 @@ public class Controller implements ActionListener{
 					if(e.getSource() == mainboard.pbtn[i][j]) {
 						game.location(turn);
 						show_now_Mals();
-						//Å×½ºÆ®
+						//ï¿½×½ï¿½Æ®
 						System.out.println(game.get_location_i().size());
 						System.out.println(game.get_location_i().get(0));
 						System.out.println(game.get_location_j().get(0));
@@ -154,7 +153,7 @@ public class Controller implements ActionListener{
 			for(int j=0; j<game.get_location_i().size(); j++) {
 				int x = game.get_location_i().get(j);
 				int y = game.get_location_j().get(j);
-				mainboard.pbtn[x][y].setText("¸» ¿©±âÀÖÀ½");
+				mainboard.pbtn[x][y].setText("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 				mainboard.pbtn[x][y].setBorder(UIManager.getBorder("Button.border"));
 			}
 		}
