@@ -112,7 +112,7 @@ public class Controller implements ActionListener {
 				mainpage.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
 			}
 
-			// Ư�� �� ������ ��ư
+
 			for (int i = 0; i < 6; i++) {
 				if (e.getSource() == mainpage.testThrowYutBtns[i] && throw_chance > 0) {
 					throw_chance--;
@@ -131,7 +131,7 @@ public class Controller implements ActionListener {
 				}
 			}
 
-			// ���ο� �� �߰� ��ư
+
 			for (int i = 0; i < player_num; i++) {
 				if (e.getSource() == mainpage.btnPlayerWait[turn] && yut.size() > 0 && init_throw == true
 						&& game.getRemainHorse(turn) > 0) {
@@ -139,26 +139,15 @@ public class Controller implements ActionListener {
 					game.destination(-1, -1, yut);
 					show_possible_Mals();
 					selected = true;
-					for (int a = 0; a < yut.size(); a++) {
-						System.out.println("����: " + yut.get(a));
-					}
-					for (int a = 0; a < game.get_destination_i().size(); a++) {
-						System.out.println(game.get_destination_i().get(a));
-						System.out.println(game.get_destination_j().get(a));
-						System.out.println("");
-					}
 				}
 			}
 
-			// ���� Ŭ��
+
 			OUT: for (int i = 0; i < 7; i++) {
 				for (int j = 0; j < 7; j++) {
 					if (e.getSource() == mainpage.pbtn[i][j] && init_throw == true) {
 
-//             	  game.location(turn);
-//            	  show_now_Mals();
 
-						// 1. �ڱ� ���� (�����̱���) Ŭ��
 						if (selected == false) {
 
 							for (int k = 0; k < game.get_location_i().size(); k++) {
@@ -167,16 +156,7 @@ public class Controller implements ActionListener {
 
 									selected = true;
 									show_now_Mals();
-									for (int a = 0; a < yut.size(); a++) {
-										System.out.println("����: " + yut.get(a));
-									}
 									game.destination(i, j, yut);
-									for (int a = 0; a < game.get_destination_i().size(); a++) {
-										System.out.println(game.get_destination_i().get(a));
-										System.out.println(game.get_destination_j().get(a));
-										System.out.println("");
-									}
-
 									temp_idx_i = i;
 									temp_idx_j = j;
 									show_possible_Mals();
@@ -187,29 +167,14 @@ public class Controller implements ActionListener {
 
 						if (selected == true) {
 
-							System.out.println("aa");
 							for (int m = 0; m < game.get_destination_i().size(); m++) {
 
-								for (int a = 0; a < game.get_destination_i().size(); a++) {
-
-									System.out.println("ss" + game.get_destination_i().get(a));
-									System.out.println("ss" + game.get_destination_j().get(a));
-									System.out.println("");
-								}
-
 								if (i == game.get_destination_i().get(m) && j == game.get_destination_j().get(m)) {
-									System.out.println("i: " + i);
-									System.out.println("j: " + j);
 									int used_yut = game.get_yut().get(m);
-									System.out.println("gd");
-									System.out.println("asd" + used_yut);
 									yut.remove(new Integer(used_yut));
-									System.out.println("gd");
 									show_yut();
-									System.out.println(used_yut);
 									selected = false;
 
-									// �����δ�
 									if (game.move(turn, game.getHorseSet(temp_idx_i, temp_idx_j), i, j) == 1) {
 										throw_chance++;
 									}
@@ -243,7 +208,7 @@ public class Controller implements ActionListener {
 			}
 			
 			
-			// ������ ��ư Ŭ��
+
 			if (e.getSource() == mainpage.finishBtn) {
 				for (int m = 0; m < game.get_destination_i().size(); m++) {
 					if (7 == game.get_destination_i().get(m) && 7 == game.get_destination_j().get(m)) {
@@ -252,11 +217,6 @@ public class Controller implements ActionListener {
 							int used_yut = game.get_yut().get(m);
 							yut.remove(new Integer(used_yut));
 							show_yut();
-
-							System.out.println("aa" + game.getRemainHorse(turn));
-							System.out.println("aa" + game.getRemainHorse(turn));
-
-							System.out.println("./img" + turn + "_" + game.getRemainHorse(turn) + ".png");
 							end_mal[turn] += game.getHorseSet(temp_idx_i, temp_idx_j).getHorses().size();
 							game.move(turn, game.getHorseSet(temp_idx_i, temp_idx_j), 7, 7);
 							selected = false;
@@ -292,7 +252,7 @@ public class Controller implements ActionListener {
 		}
 	}
 
-	// �� �����ֱ�
+
 	public void show_yut() {
 		yut_string = "";
 		for (int i = 0; i < yut.size(); i++) {
@@ -303,7 +263,7 @@ public class Controller implements ActionListener {
 		mainpage.resultYutTextLbl.setText(yut_string);
 	}
 
-	// �� �ѱ�
+
 	public void turn_change() {
 		game.location(turn);
 		show_now_Mals();
@@ -320,7 +280,7 @@ public class Controller implements ActionListener {
 		mainpage.resultYutImageLbl.setIcon(null);
 	}
 
-	// �� üũ
+
 	public boolean check_turn() {
 		if (throw_chance < 1 && yut.size() < 1) {
 			return true;
@@ -328,15 +288,14 @@ public class Controller implements ActionListener {
 			return false;
 	}
 
-	// ���� �������� üũ
+
 	public void check_game(int check_mal, int turn) {
 		if (check_mal == player_num) {
-			System.out.println("asdasdasdsadsad");
 			end_game(turn);
 		}
 	}
 
-	// ���� ����
+
 	public void end_game(int turn) {
 		game_winner = turn;
 		mainpage.setVisible(false);
