@@ -86,12 +86,17 @@ public class Game {
                }
               else if(index_j == 6 && index_i > 0) {
                  for(int i=0; i<yut.get(y); i++) {
-                    if(index_i>0) {
+                    if(index_i>0 && index_i<6) {
                        if(index_i==4)
                           index_i--;
                        index_i--;
                        yutValue++;
                     }
+                    else if(index_i>=6 && yut.get(y)!=0) {
+                      index_i = 7;
+                      index_j = 7;
+                      yutValue++;
+                   }
                     else {
                        if(index_j==4)
                           index_j--;
@@ -164,7 +169,7 @@ public class Game {
                     if(index_j==2)
                        index_j++;
                     index_j++;
-                    if(index_i>=6 && index_j>6) {
+                    if(index_i==6 && index_j>6) {
                        index_i = 7;
                        index_j = 7;
                     }
@@ -252,6 +257,7 @@ public class Game {
          
          //상대방 말이 있는 경우 상대 player의 horseSets를 업데이트해줘야 한다.
          if(this.horseSet.getPlayer()!=horseSet.getPlayer()) {
+            System.out.println("다음 인덱스에 해당하는 상대 말 상대 플레이어의 배열에서 제거" + this.horseSet.get_i() + ',' + this.horseSet.get_j());
             this.player.get(this.horseSet.getPlayer()).getHorseSets().remove(this.horseSet);
             this.player.get(this.horseSet.getPlayer()).setHorseNum(this.player.get(this.horseSet.getPlayer()).getHorseNum()+this.horseSet.getHorses().size());
             chance++;
@@ -285,9 +291,9 @@ public class Game {
          //throwChance를 위한 chance변수 반환
       }
       else {
-    	  if(horseSet.get_i()!=-1)
-    		  board[horseSet.get_i()][horseSet.get_j()] = null;
-    	  tempPlayer.getHorseSets().remove(horseSet);
+         if(horseSet.get_i()!=-1)
+            board[horseSet.get_i()][horseSet.get_j()] = null;
+         tempPlayer.getHorseSets().remove(horseSet);
       }  
       return chance;
    }

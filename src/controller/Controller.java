@@ -187,6 +187,7 @@ public class Controller implements ActionListener {
 									}
 
 									game.location(turn);
+									game.destination(i, j, yut);
 
 									for (int c = 0; c < player_num; c++) {
 										mainpage.btnPlayerWait[c].setIcon(
