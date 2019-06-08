@@ -1,5 +1,5 @@
 package view;
-import model.Yut;
+import controller.*;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,190 +15,201 @@ import java.awt.Panel;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	public JPanel mainFrame;
+	public JButton ramdomThrowYutBtn; //랜덤윷던지기 버튼
+	public JButton[] testThrowYutBtns; //도개결윷모 던지기 버튼 배열
+	public JLabel resultYutImageLbl; //결과 이미지
+	public JLabel resultYutTextLbl; //결과 이미지
+	public JButton[][] pbtn; //보드 버튼 배열
+	public JPanel[] players; //플레이어 시작버튼
+	public JButton[] btnPlayerWait;
+	public JLabel nowTurnlbl;
+	private Controller control; 
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+
+	public MainFrame(Controller controller) {
+		
+		control = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1070, 700);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBounds(100, 100, 1070, 750);
+		mainFrame = new JPanel();
+		mainFrame.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(mainFrame);
+		mainFrame.setLayout(null);
 		
 		JPanel panelBoard = createBoard();
 		panelBoard.setBounds(204, 73, 619, 580);
-		contentPane.add(panelBoard);
-
-		JPanel panelPlayerSet = createPlayerSet();
-		panelPlayerSet.setBounds(4, 80, 186, 512);
-		contentPane.add(panelPlayerSet);
+		mainFrame.add(panelBoard);
 
 		JPanel panelThrowBtnSet = createThrowSet();
 		panelThrowBtnSet.setBounds(837, 255, 200, 187);
-		contentPane.add(panelThrowBtnSet);
+		mainFrame.add(panelThrowBtnSet);
 										
-		JLabel lblHeadLine = new JLabel("\uC737\uB180\uC774");
-		lblHeadLine.setFont(new Font("µ¸¿ò", Font.BOLD, 21));
-		lblHeadLine.setBounds(15, 12, 133, 64);
-		contentPane.add(lblHeadLine);
-										
-		JLabel lblResultThrowYut = new JLabel("");
-		lblResultThrowYut.setIcon(new ImageIcon("./img/moe.png"));
-		lblResultThrowYut.setBounds(837, 73, 200, 173);
-		contentPane.add(lblResultThrowYut);
-	
+		JLabel lblHeadLine = new JLabel("윷놀이");
+		lblHeadLine.setFont(new Font("굴림", Font.BOLD, 21));
+		lblHeadLine.setBounds(15, 12, 100, 54);
+		mainFrame.add(lblHeadLine);
+					
+		JLabel lblTurnText = new JLabel("현재 턴 ");
+		lblTurnText.setFont(new Font("굴림", Font.BOLD, 21));
+		lblTurnText.setBounds(200, 12, 100, 64);
+		mainFrame.add(lblTurnText);
+		
+		nowTurnlbl = new JLabel("");
+		nowTurnlbl.setFont(new Font("굴림", Font.BOLD, 21));
+		nowTurnlbl.setBounds(280, 12, 100, 64);
+		mainFrame.add(nowTurnlbl);
+		
+		resultYutImageLbl = new JLabel();
+		resultYutImageLbl.setBounds(837, 73, 200, 173);
+		mainFrame.add(resultYutImageLbl);
+		
+		JLabel yutResult = new JLabel("윷 결과 : ");
+		yutResult.setBounds(837, 400, 200, 173);
+		mainFrame.add(yutResult);
+		
+		resultYutTextLbl = new JLabel("");
+		resultYutTextLbl.setBounds(890, 400, 200, 173);
+		mainFrame.add(resultYutTextLbl);
+
 	}
-	
+
 	public JPanel createBoard() {
 		
 		JPanel panelBoard = new JPanel();
 		panelBoard.setLayout(null);
+		pbtn = new JButton[7][7];
 		
-
-		
-		JButton btn0 = new JButton("");
-		btn0.setBounds(514, 489, 80, 74);
-		panelBoard.add(btn0);
-		
-		JButton btn1 = new JButton("");
-		btn1.setBounds(524, 398, 45, 45);
-		panelBoard.add(btn1);
-		
-		JButton btn2 = new JButton("");
-		btn2.setBounds(524, 307, 45, 45);
-		panelBoard.add(btn2);
+		for(int i=0; i<7; i++) {
+			for(int j=0; j<7; j++) {
+				int offset = 0;
+				int x = 0, y =0 ;
+				pbtn[i][j] = new JButton();
+				if( i == 6 && j ==6) { //start 버튼
+					pbtn[i][j].setBounds(510, 490, 80, 80); 
+					panelBoard.add(pbtn[i][j]);
+				}
+				if( i == 0 && j==6) {// 1시방향 버튼 
+					pbtn[i][j].setBounds(510, 5, 80, 80);
+					panelBoard.add(pbtn[i][j]);
+				}
+				if( i == 0 && j ==0) {
+					pbtn[i][j].setBounds(23, 5, 80, 80);
+					panelBoard.add(pbtn[i][j]);
+				}
+				if( i == 6 && j== 0) {
+					pbtn[i][j].setBounds(23, 486, 80, 80);
+					panelBoard.add(pbtn[i][j]);
+				}
 				
-		JButton btn3 = new JButton("");
-		btn3.setBounds(524, 220, 45, 45);
-		panelBoard.add(btn3);		
-		
-		JButton btn4 = new JButton("");
-		btn4.setBounds(524, 125, 45, 45);
-		panelBoard.add(btn4);
+				if( j==6 || j==0) { //겉에 세로 
+					if(j ==6) {
+						x =526;
+						y= 400;
+					}else{
+						x =40;
+						y= 400;
+					}
+					if( i == 4 || i ==5) {
+						offset = 5-i;
+						pbtn[i][j].setBounds(x , y - (89*offset), 45, 45); //왼쪽 세로 줄 
+						panelBoard.add(pbtn[i][j]);
+					}
+					if( i == 1 || i ==2) {
+						offset = 4-i;
+						pbtn[i][j].setBounds(x , y - (89*offset), 45, 45); //왼쪽 세로 줄 
+						panelBoard.add(pbtn[i][j]);
+					}
+				}
 
-		JButton btn5 = new JButton("");
-		btn5.setBounds(502, 12, 80, 74);
-		panelBoard.add(btn5);
-		
-		JButton btn6 = new JButton("");
-		btn6.setBounds(415, 27, 45, 45);
-		panelBoard.add(btn6);		
-		
-		JButton btn7 = new JButton("");
-		btn7.setBounds(325, 27, 45, 45);
-		panelBoard.add(btn7);
-		
-		JButton btn8 = new JButton("");
-		btn8.setBounds(241, 27, 45, 45);
-		panelBoard.add(btn8);
-		
-		JButton btn9 = new JButton("");
-		btn9.setBounds(148, 27, 45, 45);
-		panelBoard.add(btn9);
-		
-		JButton btn10 = new JButton("");
-		btn10.setBounds(26, 12, 80, 74);
-		panelBoard.add(btn10);
+				if( i==0 || i==6) { //겉에 가로 
+					if(i==0) {
+						x = 150;
+						y= 21;
+					}else {
+						x = 150;
+						y = 507;
+					}
+					if( j ==1 || j ==2) {
+						offset = j-1;
+						pbtn[i][j].setBounds(x + (89*offset), y, 45, 45); //위쪽 줄 
+						panelBoard.add(pbtn[i][j]);
+					}
+					if( j ==4 || j ==5) {
+						offset = j-2;
+						pbtn[i][j].setBounds(x + (89*offset), y, 45, 45); //위쪽 줄 
+						panelBoard.add(pbtn[i][j]);
+					}
+				}
+				if( i == 3 && j==3) { //센터
+					pbtn[i][j].setBounds(265, 247, 80, 80);
+					panelBoard.add(pbtn[i][j]);
+				}
+				if( j ==1 ) { //센터 왼쪽부터 한줄
+					if( i ==1) {
+						offset = 0;
+						pbtn[i][j].setBounds(126, 107+ (315*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+					if (i ==5) {
+						offset = 1;
+						pbtn[i][j].setBounds(126, 107+ (315*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
 
-		JButton btn11 = new JButton("");
-		btn11.setBounds(35, 125, 45, 45);
-		panelBoard.add(btn11);
+				}
+				if( j ==2 ) { //센터 왼쪽부터 한줄
+					if( i ==2) {
+						offset = 0;
+						pbtn[i][j].setBounds(197, 180+ (170*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+					if (i ==4) {
+						offset = 1;
+						pbtn[i][j].setBounds(197, 180+ (170*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
 
-		JButton btn12 = new JButton("");
-		btn12.setBounds(35, 220, 45, 45);
-		panelBoard.add(btn12);
-		
-		JButton btn13 = new JButton("");
-		btn13.setBounds(35, 307, 45, 45);
-		panelBoard.add(btn13);
-		
-		JButton btn14 = new JButton("");
-		btn14.setBounds(35, 398, 45, 45);
-		panelBoard.add(btn14);
-		
-		JButton btn15 = new JButton("");
-		btn15.setBounds(14, 486, 80, 74);
-		panelBoard.add(btn15);
-		
-		JButton btn16 = new JButton("");
-		btn16.setBounds(153, 501, 45, 45);
-		panelBoard.add(btn16);
-		
-		JButton btn17 = new JButton("");
-		btn17.setBounds(241, 504, 45, 45);
-		panelBoard.add(btn17);
-		
-		JButton btn18 = new JButton("");
-		btn18.setBounds(325, 504, 45, 45);
-		panelBoard.add(btn18);
-		
-		JButton btn19 = new JButton("");
-		btn19.setBounds(415, 504, 45, 45);
-		panelBoard.add(btn19);
-		
-		JButton btn20 = new JButton("");
-		btn20.setBounds(263, 251, 80, 74);
-		panelBoard.add(btn20);
-		
-		JButton btn21 = new JButton("");
-		btn21.setBounds(441, 107, 45, 45);
-		panelBoard.add(btn21);
-		
-		JButton btn22 = new JButton("");
-		btn22.setBounds(371, 182, 45, 45);
-		panelBoard.add(btn22);
+				}
+				if( j ==4 ) { //센터 왼쪽부터 한줄
+					if( i ==2) {
+						offset = 0;
+						pbtn[i][j].setBounds(370, 180+ (170*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+					if (i ==4) {
+						offset = 1;
+						pbtn[i][j].setBounds(370, 180+ (170*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
 
-		JButton btn23 = new JButton("");
-		btn23.setBounds(126, 107, 45, 45);
-		panelBoard.add(btn23);
+				}
+				if( j ==5 ) { //센터 왼쪽부터 한줄
+					if( i ==1) {
+						offset = 0;
+						pbtn[i][j].setBounds(441, 107+ (315*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+					if (i ==5) {
+						offset = 1;
+						pbtn[i][j].setBounds(441, 107+ (315*offset), 45, 45);
+						panelBoard.add(pbtn[i][j]);
+					}
+				}
+				pbtn[i][j].addActionListener(control);
+				pbtn[i][j].setContentAreaFilled(false);
+			}
+		}
 
-		JButton btn24 = new JButton("");
-		btn24.setBounds(199, 182, 45, 45);
-		panelBoard.add(btn24);
-		
-		JButton btn25 = new JButton("");
-		btn25.setBounds(188, 355, 45, 45);
-		panelBoard.add(btn25);
-		
-		JButton btn26 = new JButton("");
-		btn26.setBounds(126, 414, 45, 45);
-		panelBoard.add(btn26);
-
-		JButton btn27 = new JButton("");
-		btn27.setBounds(371, 344, 45, 45);
-		panelBoard.add(btn27);
-
-		JButton btn28 = new JButton("");
-		btn28.setBounds(441, 414, 45, 45);
-		panelBoard.add(btn28);
-		
-		
 		JLabel lblBoard = new JLabel("");
 		lblBoard.setIcon(new ImageIcon("./img/board.PNG"));
 		lblBoard.setBounds(0, 0, 605, 568);
@@ -210,114 +221,68 @@ public class MainFrame extends JFrame {
 		
 		JPanel panelBtnSetOfThrow = new JPanel();
 		panelBtnSetOfThrow.setLayout(null);
+		testThrowYutBtns = new JButton[6];
+		String[] throwString = {"빽도","도","개","걸","윷","모"};
+		ramdomThrowYutBtn = new JButton("윷 던지기");
+		ramdomThrowYutBtn.setBounds(0, 0, 186, 54);
+		panelBtnSetOfThrow.add(ramdomThrowYutBtn);
+		ramdomThrowYutBtn.setBackground(UIManager.getColor("Button.focus"));
+		ramdomThrowYutBtn.setFont(new Font("굴림", Font.BOLD, 30));
+		ramdomThrowYutBtn.addActionListener(control);
 		
-		JButton buttonThrowYut = new JButton("\uB358\uC9C0\uAE30");
-		buttonThrowYut.setBounds(0, 0, 186, 54);
-		panelBtnSetOfThrow.add(buttonThrowYut);
-		buttonThrowYut.setBackground(UIManager.getColor("Button.focus"));
-		buttonThrowYut.setFont(new Font("µ¸¿ò", Font.BOLD, 30));
+		for(int i=0; i<3; i++) {
+			for(int j=0; j<2; j++) {
+				testThrowYutBtns[(i*2)+j] = new JButton(throwString[(i*2)+j]);
+				testThrowYutBtns[(i*2)+j].setBounds(0 + (j*106), 70 + (i*40 ), 80, 27);
+				panelBtnSetOfThrow.add(testThrowYutBtns[(i*2)+j]);
+				testThrowYutBtns[(i*2)+j].addActionListener(control);
+			}
+		}
 		
-		JButton buttonDo = new JButton("도");
-		buttonDo.setBounds(0, 70, 80, 27);
-		panelBtnSetOfThrow.add(buttonDo);
-		
-		JButton buttonGe = new JButton("개");
-		buttonGe.setBounds(106, 70, 80, 27);
-		panelBtnSetOfThrow.add(buttonGe);
-		
-		JButton buttonGul = new JButton("걸");
-		buttonGul.setBounds(0, 110, 80, 27);
-		panelBtnSetOfThrow.add(buttonGul);
-		
-		JButton buttonYoot = new JButton("윷");
-		buttonYoot.setBounds(106, 110, 80, 27);
-		panelBtnSetOfThrow.add(buttonYoot);
-		
-		JButton buttonMo = new JButton("모");
-		buttonMo.setBounds(0, 150, 80, 27);
-		panelBtnSetOfThrow.add(buttonMo);
-		
-		JButton buttonBackDo = new JButton("백도");
-		buttonBackDo.setBounds(106, 150, 80, 27);
-		panelBtnSetOfThrow.add(buttonBackDo);
-		
+
 		return panelBtnSetOfThrow;
 		
 	}
-	public JPanel createPlayerSet() {
+
+	public void createPlayerSet(int player_num, int horse_num) {
 		JPanel panelPlayerSet = new JPanel();
 		panelPlayerSet.setLayout(null);
-		
-		JPanel panelPlayer1 = new JPanel();
-		panelPlayer1.setBounds(0, 12, 183, 104);
-		panelPlayerSet.add(panelPlayer1);
-		panelPlayer1.setLayout(null);
-		
-		JLabel lblPlayer1 = new JLabel("player1");
-		lblPlayer1.setBounds(5, 9, 62, 18);
-		panelPlayer1.add(lblPlayer1);
-		
-		JButton btnPlayer1wait = new JButton("player1Wait");
-		btnPlayer1wait.setBounds(5, 25, 88, 67);
-		panelPlayer1.add(btnPlayer1wait);
-		
-		JLabel lblplayer1Fin = new JLabel("player2Fin");
-		lblplayer1Fin.setBounds(99, 28, 70, 64);
-		panelPlayer1.add(lblplayer1Fin);
-		
-		JPanel panelPlayer2 = new JPanel();
-		panelPlayer2.setBounds(0, 128, 183, 104);
-		panelPlayerSet.add(panelPlayer2);
-		panelPlayer2.setLayout(null);
-		
-		JLabel lblPlayer2 = new JLabel("player2");
-		lblPlayer2.setBounds(5, 9, 62, 18);
-		panelPlayer2.add(lblPlayer2);
-		
-		JButton btnPlayer2wait = new JButton("player2Wait");
-		btnPlayer2wait.setBounds(5, 25, 88, 67);
-		panelPlayer2.add(btnPlayer2wait);
-		
-		JLabel lblplayer2Fin = new JLabel("player2Fin");
-		lblplayer2Fin.setBounds(99, 28, 70, 64);
-		panelPlayer2.add(lblplayer2Fin);
-		
-		JPanel panelPlayer3 = new JPanel();
-		panelPlayer3.setBounds(0, 254, 183, 104);
-		panelPlayerSet.add(panelPlayer3);
-		panelPlayer3.setLayout(null);
-		
-		JLabel lblPlayer3 = new JLabel("player3");
-		lblPlayer3.setBounds(5, 9, 62, 18);
-		panelPlayer3.add(lblPlayer3);
-		
-		JButton btnPlayer3wait = new JButton("player3Wait");
-		btnPlayer3wait.setBounds(5, 25, 88, 67);
-		panelPlayer3.add(btnPlayer3wait);
-		
-		JLabel lblplayer3Fin = new JLabel("player3Fin");
-		lblplayer3Fin.setBounds(99, 28, 70, 64);
-		panelPlayer3.add(lblplayer3Fin);
-		
-		JPanel panelPlayer4 = new JPanel();
-		panelPlayer4.setBounds(0, 385, 183, 104);
-		panelPlayerSet.add(panelPlayer4);
-		panelPlayer4.setLayout(null);
-		
-		JLabel lblPlayer4 = new JLabel("player4");
-		lblPlayer4.setBounds(5, 9, 62, 18);
-		panelPlayer4.add(lblPlayer4);
-		
-		JButton btnPlayer4wait = new JButton("player4Wait");
-		btnPlayer4wait.setBounds(5, 25, 88, 67);
-		panelPlayer4.add(btnPlayer4wait);
-		
-		JLabel lblplayer4Fin = new JLabel("player4Fin");
-		lblplayer4Fin.setBounds(99, 28, 70, 64);
-		panelPlayer4.add(lblplayer4Fin);
-		
-		return panelPlayerSet;
+		players = new JPanel[player_num];
+		btnPlayerWait = new JButton[player_num];
+		for(int i=0; i< player_num; i++) {
+			players[i] = new JPanel();
+			players[i].setBounds(0, 12+(116*i), 183, 104);
+			panelPlayerSet.add(players[i]);
+			players[i].setLayout(null);
+			
+			JLabel lblPlayer = new JLabel("player"+i);
+			lblPlayer.setBounds(5, 9, 62, 18);
+			players[i].add(lblPlayer);
+			
+			btnPlayerWait[i] = new JButton();
+			btnPlayerWait[i].setBounds(5, 25, 88, 67);
+			btnPlayerWait[i].setIcon(new ImageIcon("./img/"+i+"_"+horse_num+".png"));
+			players[i].add(btnPlayerWait[i]);
+			btnPlayerWait[i].addActionListener(control);
+			btnPlayerWait[i].setContentAreaFilled(false);
+
+
+			JLabel lblplayerFin = new JLabel("player"+i+"Fin");
+			lblplayerFin.setBounds(99, 28, 70, 64);
+			players[i].add(lblplayerFin);
+		}
+
+		panelPlayerSet.setBounds(4, 80, 186, 512);
+		mainFrame.add(panelPlayerSet);
+
+
 		
 	}
+	
+	
 }
+
+
+ 
+
 

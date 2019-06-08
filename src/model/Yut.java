@@ -3,56 +3,55 @@ import java.util.Random;
 
 
 public class Yut {
-	private int state;
+	public static final int BACK_DOE = 0;
+	public static final int DOE = 1;
+	public static final int GAE = 2;
+	public static final int GUL = 3;
+	public static final int YOOT = 4;
+	public static final int MOE = 5;
 	public Yut() {
-		state = -1;
+	
 	}
-	public int throwYut() {
+	public static int throwYut() {
 		Random random = new Random();
 		float ran_num = random.nextFloat();
+		
 		if(ran_num<=0.1152) {
-			state = 0; //µµ
+			return DOE; //ï¿½ï¿½
 		}
 		else if(ran_num>0.1152 && ran_num<=0.4608) {
-			state = 1; //°³
+			return GAE; //ï¿½ï¿½
 		}
 		else if(ran_num>0.4608 && ran_num<=0.8064) {
-			state = 2; //°É
+			return GUL; //ï¿½ï¿½
 		}
 		else if(ran_num>0.8064 && ran_num<=0.936) {
-			state = 3; //À·
+			return YOOT; //ï¿½ï¿½
 		}
 		else if(ran_num>0.936 && ran_num<=0.9616) {
-			state = 4; //¸ð
+			return MOE; //ï¿½ï¿½
 		}
-		else if(ran_num>0.9616 && ran_num<=1) {
-			state = 5;  //¹éµµ
+		else{
+			return BACK_DOE;  //ï¿½éµµ
 		} 
 		
-		return state;
 	}
-	public int throwDo() {
-		state = 0;
-		return state;
+	public int throwDoe() {
+		return DOE;
 	}
 	public int throwGe() {
-		state = 1;
-		return state;
+		return GAE;
 	}
 	public int throwGul() {
-		state = 2;
-		return state;
+		return GUL;
 	}
 	public int throwYoot() {
-		state = 3;
-		return state;
+		return YOOT;
 	}
-	public int throwMo() {
-		state = 40;
-		return state;
+	public int throwMoe() {
+		return MOE;
 	}
-	public int throwBackDo() {
-		state = 5;
-		return state;
+	public int throwBackDoe() {
+		return BACK_DOE;
 	}
 }
