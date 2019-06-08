@@ -10,7 +10,7 @@ import javax.swing.JButton;
 
 
 public class ResultPage extends JFrame {
-	// ¹öÆ°ÀÌ ´­·¯Áö¸é ¸¸µé¾îÁö´Â »õ Ã¢À» Á¤ÀÇÇÑ Å¬·¡½º
+
 	public JButton restart;
 	public JButton close;
 	private Controller control;
@@ -19,7 +19,7 @@ public class ResultPage extends JFrame {
 	
 	public ResultPage(Controller controller, int num) {
 		control = controller;
-        setTitle("°á°ú");
+        setTitle("ê²°ê³¼");
         setBounds(500, 400, 300, 200);
         JPanel dialog = new JPanel();
 		dialog.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -27,16 +27,16 @@ public class ResultPage extends JFrame {
 		dialog.setLayout(null);
         setContentPane(dialog);
         
-        JLabel NewLabel = new JLabel("Player"+num+"ÀÌ ÀÌ°å½À´Ï´Ù.");
+        JLabel NewLabel = new JLabel("Player"+num+"ì´ ì´ê²¼ìŠµë‹ˆë‹¤.");
         NewLabel.setBounds(100, 20, 200, 30);
         dialog.add(NewLabel);
         
-        restart = new JButton("Àç½ÃÀÛ");
+        restart = new JButton("ì¬ì‹œì‘");
         restart.setBounds(60, 60, 80, 50);
         restart.addActionListener(control);
         dialog.add(restart);
         
-        close = new JButton("Á¾·á");
+        close = new JButton("ì¢…ë£Œ");
         close.setBounds(160, 60, 80, 50);
         dialog.add(close);
         close.addActionListener(control);

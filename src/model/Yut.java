@@ -17,22 +17,22 @@ public class Yut {
 		float ran_num = random.nextFloat();
 		
 		if(ran_num<=0.1152) {
-			return DOE; //��
+			return DOE;
 		}
 		else if(ran_num>0.1152 && ran_num<=0.4608) {
-			return GAE; //��
+			return GAE;
 		}
 		else if(ran_num>0.4608 && ran_num<=0.8064) {
-			return GUL; //��
+			return GUL;
 		}
 		else if(ran_num>0.8064 && ran_num<=0.936) {
-			return YOOT; //��
+			return YOOT;
 		}
 		else if(ran_num>0.936 && ran_num<=0.9616) {
-			return MOE; //��
+			return MOE;
 		}
 		else{
-			return BACK_DOE;  //�鵵
+			return BACK_DOE; 
 		} 
 		
 	}

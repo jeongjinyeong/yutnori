@@ -275,7 +275,7 @@ public class MainPage extends JFrame {
 			btnPlayerWait[i].setContentAreaFilled(false);
 
 
-			lblplayerFin[i] = new JLabel("player"+i+"Fin");
+			lblplayerFin[i] = new JLabel("Finish");
 			lblplayerFin[i].setBounds(99, 28, 70, 64);
 			players[i].add(lblplayerFin[i]);
 		}

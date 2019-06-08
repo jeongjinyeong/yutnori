@@ -42,13 +42,13 @@ public class StartPage extends JFrame{
 		startPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(startPane);
 		startPane.setLayout(null);
-		JLabel label_2 = new JLabel("������");
+		JLabel label_2 = new JLabel("윷놀이");
 		label_2.setBounds(230, 24, 74, 18);
 		startPane.add(label_2);
-		JLabel label = new JLabel("�����ο�");
+		JLabel label = new JLabel("시작인원");
 		label.setBounds(150, 83, 62, 18);
 		startPane.add(label);
-		JLabel label_1 = new JLabel("������");
+		JLabel label_1 = new JLabel("말 갯수");
 		label_1.setBounds(150, 168, 62, 18);
 		startPane.add(label_1);
 
@@ -66,7 +66,7 @@ public class StartPage extends JFrame{
 		playerCombo.getSelectedItem().toString();
 		horseCombo.getSelectedItem().toString(); 
 		
-		startGame = new JButton("���ӽ���");
+		startGame = new JButton("게임시작");
 		startGame.setBounds(152, 217, 204, 39);
 		startPane.add(startGame);
 		startGame.addActionListener(control);
