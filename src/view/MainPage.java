@@ -20,9 +20,9 @@ import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainFrame extends JFrame {
+public class MainPage extends JFrame {
 
-	public JPanel mainFrame;
+	public JPanel mainPage;
 	public JButton ramdomThrowYutBtn; //랜덤윷던지기 버튼
 	public JButton[] testThrowYutBtns; //도개결윷모 던지기 버튼 배열
 	public JLabel resultYutImageLbl; //결과 이미지
@@ -30,57 +30,64 @@ public class MainFrame extends JFrame {
 	public JButton[][] pbtn; //보드 버튼 배열
 	public JPanel[] players; //플레이어 시작버튼
 	public JButton[] btnPlayerWait;
+	public JButton finishBtn;
+	public JLabel[] lblplayerFin;
 	public JLabel nowTurnlbl;
 	private Controller control; 
 	/**
 	 * Create the frame.
 	 */
 
-	public MainFrame(Controller controller) {
+	public MainPage(Controller controller) {
 		
 		control = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1070, 750);
-		mainFrame = new JPanel();
-		mainFrame.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(mainFrame);
-		mainFrame.setLayout(null);
+		mainPage = new JPanel();
+		mainPage.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(mainPage);
+		mainPage.setLayout(null);
 		
 		JPanel panelBoard = createBoard();
 		panelBoard.setBounds(204, 73, 619, 580);
-		mainFrame.add(panelBoard);
+		mainPage.add(panelBoard);
 
 		JPanel panelThrowBtnSet = createThrowSet();
 		panelThrowBtnSet.setBounds(837, 255, 200, 187);
-		mainFrame.add(panelThrowBtnSet);
+		mainPage.add(panelThrowBtnSet);
 										
 		JLabel lblHeadLine = new JLabel("윷놀이");
 		lblHeadLine.setFont(new Font("굴림", Font.BOLD, 21));
 		lblHeadLine.setBounds(15, 12, 100, 54);
-		mainFrame.add(lblHeadLine);
+		mainPage.add(lblHeadLine);
 					
 		JLabel lblTurnText = new JLabel("현재 턴 ");
 		lblTurnText.setFont(new Font("굴림", Font.BOLD, 21));
 		lblTurnText.setBounds(200, 12, 100, 64);
-		mainFrame.add(lblTurnText);
+		mainPage.add(lblTurnText);
 		
 		nowTurnlbl = new JLabel("");
 		nowTurnlbl.setFont(new Font("굴림", Font.BOLD, 21));
 		nowTurnlbl.setBounds(280, 12, 100, 64);
-		mainFrame.add(nowTurnlbl);
+		mainPage.add(nowTurnlbl);
 		
 		resultYutImageLbl = new JLabel();
 		resultYutImageLbl.setBounds(837, 73, 200, 173);
-		mainFrame.add(resultYutImageLbl);
+		mainPage.add(resultYutImageLbl);
 		
 		JLabel yutResult = new JLabel("윷 결과 : ");
 		yutResult.setBounds(837, 400, 200, 173);
-		mainFrame.add(yutResult);
+		mainPage.add(yutResult);
 		
-		resultYutTextLbl = new JLabel("");
-		resultYutTextLbl.setBounds(890, 400, 200, 173);
-		mainFrame.add(resultYutTextLbl);
+	    resultYutTextLbl = new JLabel("");
+	    resultYutTextLbl.setBounds(890, 400, 150, 173);
+	    mainPage.add(resultYutTextLbl);
 
+	    finishBtn = new JButton();
+	    finishBtn.setBounds(825, 565, 80, 80); 
+	    mainPage.add(finishBtn);
+	    finishBtn.addActionListener(control);
+	    finishBtn.setContentAreaFilled(false);
 	}
 
 	public JPanel createBoard() {
@@ -249,6 +256,7 @@ public class MainFrame extends JFrame {
 		panelPlayerSet.setLayout(null);
 		players = new JPanel[player_num];
 		btnPlayerWait = new JButton[player_num];
+		lblplayerFin = new JLabel[player_num];
 		for(int i=0; i< player_num; i++) {
 			players[i] = new JPanel();
 			players[i].setBounds(0, 12+(116*i), 183, 104);
@@ -267,13 +275,13 @@ public class MainFrame extends JFrame {
 			btnPlayerWait[i].setContentAreaFilled(false);
 
 
-			JLabel lblplayerFin = new JLabel("player"+i+"Fin");
-			lblplayerFin.setBounds(99, 28, 70, 64);
-			players[i].add(lblplayerFin);
+			lblplayerFin[i] = new JLabel("player"+i+"Fin");
+			lblplayerFin[i].setBounds(99, 28, 70, 64);
+			players[i].add(lblplayerFin[i]);
 		}
 
 		panelPlayerSet.setBounds(4, 80, 186, 512);
-		mainFrame.add(panelPlayerSet);
+		mainPage.add(panelPlayerSet);
 
 
 		

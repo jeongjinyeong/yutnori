@@ -28,7 +28,9 @@ public class Player {
 	public void decreaseHorseNum() {
 		horseNum--;
 	}
-	
+	public int getHorseNum() {
+		return horseNum;
+	}
 	public void putHorseSet() {
 		horseSets.add(new HorseSet(player));
 	}
