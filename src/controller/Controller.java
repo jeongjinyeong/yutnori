@@ -148,7 +148,7 @@ public class Controller implements ActionListener {
 					if (e.getSource() == mainpage.pbtn[i][j] && init_throw == true) {
 
 
-						if (selected == false) {
+						if (selected == false && yut.size() > 0) {
 
 							for (int k = 0; k < game.get_location_i().size(); k++) {
 
@@ -163,6 +163,9 @@ public class Controller implements ActionListener {
 									break OUT;
 								}
 							}
+						}
+						else if(selected == false && yut.size()<1) {
+							show_player_horses();
 						}
 
 						if (selected == true) {
@@ -290,7 +293,7 @@ public class Controller implements ActionListener {
 
 
 	public void check_game(int check_mal, int turn) {
-		if (check_mal == player_num) {
+		if (check_mal == horse_num) {
 			end_game(turn);
 		}
 	}
@@ -314,7 +317,7 @@ public class Controller implements ActionListener {
 		}
 	}
 
-	// ���� �ִ� �� ��ġ ������
+
 	public void show_possible_Mals() {
 		for (int m = 0; m < game.get_destination_i().size(); m++) {
 			int x = game.get_destination_i().get(m);
@@ -328,7 +331,7 @@ public class Controller implements ActionListener {
 		}
 	}
 
-	// ���� ���� ������
+
 	public void show_now_Mals() {
 		horseBoard = game.getBoard();
 		for (int i = 0; i < 7; i++) {

@@ -252,7 +252,6 @@ public class Game {
          
          //상대방 말이 있는 경우 상대 player의 horseSets를 업데이트해줘야 한다.
          if(this.horseSet.getPlayer()!=horseSet.getPlayer()) {
-            System.out.println("다음 인덱스에 해당하는 상대 말 상대 플레이어의 배열에서 제거" + this.horseSet.get_i() + ',' + this.horseSet.get_j());
             this.player.get(this.horseSet.getPlayer()).getHorseSets().remove(this.horseSet);
             this.player.get(this.horseSet.getPlayer()).setHorseNum(this.player.get(this.horseSet.getPlayer()).getHorseNum()+this.horseSet.getHorses().size());
             chance++;
