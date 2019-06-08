@@ -27,7 +27,7 @@ public class Controller implements ActionListener{
    private StartPage startpage;
    private ResultPage resultpage;
    
-   String[] yut_name = {"»ªµµ", "µµ", "°³", "°É", "À·", "¸ð"};
+   String[] yut_name = {"ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"};
    String[] yut_img_name = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
    LineBorder red = new LineBorder(Color.RED,3);
    LineBorder yellow = new LineBorder(Color.YELLOW,3);
@@ -103,7 +103,7 @@ public class Controller implements ActionListener{
 	  //mainpage 
       else if(play_game == 1) {
     	  
-    	  //·£´ý À· ´øÁö±â ¹öÆ°
+    	  //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
           if(e.getSource()==mainpage.ramdomThrowYutBtn && throw_chance > 0) {
         	  throw_chance--;
         	  init_throw = true;
@@ -120,7 +120,7 @@ public class Controller implements ActionListener{
            }
     	  
           
-          //Æ¯Á¤ À· ´øÁö±â ¹öÆ°
+          //Æ¯ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
           for(int i=0; i<6; i++) {
               if(e.getSource()==mainpage.testThrowYutBtns[i] && throw_chance > 0) {
             	 throw_chance--;
@@ -140,7 +140,7 @@ public class Controller implements ActionListener{
           }
           
           
-         //»õ·Î¿î ¸» Ãß°¡ ¹öÆ°
+         //ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½Æ°
     	 for(int i=0; i<player_num; i++) {
             if(e.getSource()==mainpage.btnPlayerWait[turn] && yut.size() > 0 && init_throw == true && game.getRemainHorse(turn) > 0) {
                //HorseSet horseset = new HorseSet(turn, new Horse(turn));
@@ -148,7 +148,7 @@ public class Controller implements ActionListener{
                show_possible_Mals();
                selected = true;
 	           	for(int a=0; a<yut.size(); a++) {
-	        		System.out.println("À·µé: "+yut.get(a));
+	        		System.out.println("ï¿½ï¿½ï¿½ï¿½: "+yut.get(a));
 	        	}
                for(int a=0; a<game.get_destination_i().size(); a++) {
                	System.out.println(game.get_destination_i().get(a));
@@ -160,7 +160,7 @@ public class Controller implements ActionListener{
          
     	 
     	 
-    	 //º¸µå Å¬¸¯
+    	 //ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½
     	 OUT:
          for(int i=0; i<7; i++) {
             for(int j=0; j<7; j++) {
@@ -169,7 +169,7 @@ public class Controller implements ActionListener{
 //             	  game.location(turn);
 //            	  show_now_Mals();
 
-                  //1. ÀÚ±â ÆÀ¸» (¿òÁ÷ÀÌ±âÀü) Å¬¸¯
+                  //1. ï¿½Ú±ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ï¿½ï¿½) Å¬ï¿½ï¿½
                   if(selected == false) {
                 	  
 	                  for(int k=0; k<game.get_location_i().size(); k++) {
@@ -179,7 +179,7 @@ public class Controller implements ActionListener{
 	                    	selected = true;
 	                    	show_now_Mals();
 	                    	for(int a=0; a<yut.size(); a++) {
-	                    		System.out.println("À·µé: "+yut.get(a));
+	                    		System.out.println("ï¿½ï¿½ï¿½ï¿½: "+yut.get(a));
 	                    	}
 	                        game.destination(i, j, yut);
 	                        for(int a=0; a<game.get_destination_i().size(); a++) {
@@ -222,11 +222,11 @@ public class Controller implements ActionListener{
                           selected = false;
                           
                           for(int a=0; a<yut.size(); a++) {
-                          	 System.out.println("À· ¹Þ°í Á¤º¸13: "+yut.get(a));
+                          	 System.out.println("ï¿½ï¿½ ï¿½Þ°ï¿½ ï¿½ï¿½ï¿½ï¿½13: "+yut.get(a));
                            }
                           
                           
-                          //¿òÁ÷ÀÎ´Ù
+                          //ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½
                           if(game.move(turn, game.getHorseSet(temp_idx_i, temp_idx_j), i, j)==1) {
                              throw_chance++;
                           }
@@ -237,9 +237,9 @@ public class Controller implements ActionListener{
                           
 
                           
-                          //ÅÏ Ã¼Å©
-                          System.out.println("´øÁú Âù½º: " + throw_chance);
-                          System.out.println("³²Àº À·ÀÇ °³¼ö: " + yut.size());
+                          //ï¿½ï¿½ Ã¼Å©
+                          System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + throw_chance);
+                          System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + yut.size());
                           if(check_turn()) {
                         	  this.turn = game.turn(turn);
                         	  turn_change();
@@ -259,7 +259,7 @@ public class Controller implements ActionListener{
                     
                   }
                }
-         //³ª°¡±â ¹öÆ° Å¬¸¯
+         //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½
          if(e.getSource()==mainpage.finishBtn) {
         	 for(int m=0; m<game.get_destination_i().size(); m++) {
         		 if(7==game.get_destination_i().get(m) && 7==game.get_destination_j().get(m)) {
@@ -308,7 +308,7 @@ public class Controller implements ActionListener{
 
    
    
-   //Àµ º¸¿©ÁÖ±â
+   //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
    public void show_yut() {
 	   yut_string = "";
 	   for(int i=0; i<yut.size(); i++) {
@@ -319,7 +319,7 @@ public class Controller implements ActionListener{
        mainpage.resultYutTextLbl.setText(yut_string);
    }
    
-	//ÅÏ ³Ñ±è
+	//ï¿½ï¿½ ï¿½Ñ±ï¿½
 	public void turn_change() {
 		game.location(turn);
 		show_now_Mals();
@@ -337,7 +337,7 @@ public class Controller implements ActionListener{
 	}
 	
    
-	//ÅÏ Ã¼Å©
+	//ï¿½ï¿½ Ã¼Å©
 	public boolean check_turn() {
 	   if(throw_chance < 1 && yut.size() < 1) {
 		   return true;
@@ -346,7 +346,7 @@ public class Controller implements ActionListener{
 		   return false;
 	}
 	
-	//°ÔÀÓ ³¡³µ´ÂÁö Ã¼Å©
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
 	public void check_game(int check_mal, int turn) {
 		   if(check_mal == player_num) {
 			   System.out.println("asdasdasdsadsad");
@@ -354,7 +354,7 @@ public class Controller implements ActionListener{
 		   }
 	}
 	
-	//°ÔÀÓ ³¡³¿
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void end_game(int turn) {
 		game_winner = turn;
 		mainpage.setVisible(false);
@@ -364,7 +364,7 @@ public class Controller implements ActionListener{
 		
 	}
 	
-	//ÇöÀç ÅÏÀÇ ÇÃ·¹ÀÌ¾îÀÇ ¸»ÀÇ À§Ä¡ ¾Ë·ÁÁÜ
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ë·ï¿½ï¿½ï¿½
 	public void show_player_horses() {
       for(int m=0; m<game.get_location_i().size(); m++) {
     	 int x = game.get_location_i().get(m);
@@ -373,7 +373,7 @@ public class Controller implements ActionListener{
       }  
 	}
    
-   //°¥¼ö ÀÖ´Â ¸»  À§Ä¡ º¸¿©ÁÜ
+   //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½  ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
    public void show_possible_Mals() {
       for(int m=0; m<game.get_destination_i().size(); m++) {
     	 int x = game.get_destination_i().get(m);
@@ -387,7 +387,7 @@ public class Controller implements ActionListener{
       }
    }
       
-   //ÇöÀç ¸»µé º¸¿©ÁÜ
+   //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
    public void show_now_Mals() {
       horseBoard = game.getBoard();
       for(int i=0; i<7; i++) {
@@ -414,4 +414,3 @@ public class Controller implements ActionListener{
 }   
       
 
- 
