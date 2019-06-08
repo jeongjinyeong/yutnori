@@ -194,8 +194,6 @@ public class Game {
                   index_i--;
                }
                else if(index_j==0 && index_i==6) {
-                  destination_i.add(index_i--);
-                  destination_j.add(index_j);
                   index_i--;
                   index_j++;
                }
@@ -205,8 +203,6 @@ public class Game {
                   index_j--;
                }
                else if(index_i==6 && index_j==6) {
-                  destination_i.add(index_i--);
-                  destination_j.add(index_j--);
                   index_j--;
                }
                else if((index_i==1 && index_j==1) || (index_i==2 && index_j==2) || (index_i==4 && index_j==4) || (index_i==5 && index_j==5)) {
