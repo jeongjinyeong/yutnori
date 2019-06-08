@@ -20,7 +20,7 @@ public class ResultPage extends JFrame {
 	public ResultPage(Controller controller, int num) {
 		control = controller;
         setTitle("결과");
-        setBounds(500, 400, 300, 200);
+        setBounds(800, 400, 300, 200);
         JPanel dialog = new JPanel();
 		dialog.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(dialog);

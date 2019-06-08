@@ -42,7 +42,7 @@ public class MainPage extends JFrame {
 		
 		control = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1070, 750);
+		setBounds(400, 100, 1070, 750);
 		mainPage = new JPanel();
 		mainPage.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainPage);

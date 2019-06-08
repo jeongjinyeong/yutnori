@@ -134,9 +134,13 @@ public class Controller implements ActionListener {
 
 			for (int i = 0; i < player_num; i++) {
 				if (e.getSource() == mainpage.btnPlayerWait[turn] && yut.size() > 0 && init_throw == true
-						&& game.getRemainHorse(turn) > 0) {
+						&& game.getRemainHorse(turn) > 0 && selected == false) {
 					// HorseSet horseset = new HorseSet(turn, new Horse(turn));
-					game.destination(-1, -1, yut);
+					if(game.destination(-1, -1, yut) == 0) {
+						yut.clear();
+						throw_chance = 1;
+						break;
+					}
 					show_possible_Mals();
 					selected = true;
 				}

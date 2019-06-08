@@ -37,7 +37,7 @@ public class StartPage extends JFrame{
 		String[] horseStringSet = {"2개","3개","4개","5개"};
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 360);
+		setBounds(600, 300, 500, 360);
 		startPane = new JPanel();
 		startPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(startPane);
