@@ -13,6 +13,9 @@ import view.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.border.LineBorder;
+
+import com.sun.jmx.snmp.SnmpUnknownSubSystemException;
+
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.UIManager;
@@ -22,30 +25,41 @@ public class Controller implements ActionListener{
    private model.Game game;
    private MainFrame mainboard;
    private StartPage startpage;
-
    private ResultPage resultpage;
-   String[] yut_name = {"ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½", "ï¿½ï¿½"};
-   String yut_string = "";
-   String[] yut_img_name = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
-   private int turn;
-   private int player_num = 2;
-   private int horse_num = 2;
-   private int play_game = 0;
-   private int selected = 0;
-   private int game_winner = 0;
-   private int temp_idx_i = 0;
-   private int temp_idx_j = 0;
-   private HorseSet[][] horseBoard;
-   ArrayList<Integer> yut = new ArrayList<Integer>();
-   private int throw_chance = 1;
-   private int move_chance = 1;
-   private int init_throw_cnt = 1;
    
+   String[] yut_name = {"»ªµµ", "µµ", "°³", "°É", "À·", "¸ð"};
+   String[] yut_img_name = {"./img/back_doe.png", "./img/doe.png", "./img/gae.png", "./img/gul.png", "./img/yoot.png", "./img/moe.png"}; 
    LineBorder red = new LineBorder(Color.RED,3);
+   LineBorder yellow = new LineBorder(Color.YELLOW,3);
    EmptyBorder blank = new EmptyBorder(5, 3, 5, 3);
    
+   private String yut_string;
+   private int turn;
+   private boolean init_throw;
+   private boolean selected;
+   private int player_num;
+   private int horse_num;  
+   private int play_game;
+   private int game_winner;   
+   private int temp_idx_i;
+   private int temp_idx_j;
+   private int throw_chance;
+   private HorseSet[][] horseBoard;
+   ArrayList<Integer> yut;   
+   
    public Controller() {
-      startpage = new StartPage(this);
+     yut_string = "";
+     game_winner = 0;
+     selected = false;
+     play_game = 0;
+      player_num = 2;
+      horse_num = 2;
+      throw_chance = 1;
+      temp_idx_i = 0;
+      temp_idx_j = 0;
+      yut = new ArrayList<Integer>();
+      init_throw = false;
+     startpage = new StartPage(this);
       game = new Game();
       turn = 0;
       horseBoard = new HorseSet[7][7];
@@ -54,6 +68,8 @@ public class Controller implements ActionListener{
    
    @Override
    public void actionPerformed(ActionEvent e) {
+      
+      //StartPage
       if(play_game==0) {
          if(e.getSource()==startpage.playerCombo) {
             String temp_player = startpage.playerCombo.getSelectedItem().toString();
@@ -66,7 +82,7 @@ public class Controller implements ActionListener{
          }
          
          if(e.getSource()==startpage.startGame) {
-            game.setPlayer(player_num);
+            game.setPlayer(player_num, horse_num);
             game.setMaxPlayer(player_num);
             game.setMaxHorse(horse_num);
 
@@ -76,133 +92,219 @@ public class Controller implements ActionListener{
             startpage.dispose();
             mainboard.setVisible(true);
             play_game = 1;
+            mainboard.nowTurnlbl.setText(Integer.toString(turn));
          }
       }   
       
+      
+     //MainBoard 
       else if(play_game == 1) {
          
-         for(int i=0; i<player_num; i++) {
-            if(e.getSource()==mainboard.btnPlayerWait[i] && move_chance != 0) {
+         //·£´ý À· ´øÁö±â ¹öÆ°
+          if(e.getSource()==mainboard.ramdomThrowYutBtn && throw_chance > 0) {
+             throw_chance--;
+             init_throw = true;
+              int yut_result = model.Yut.throwYut();
+              yut.add(yut_result);
+              
+              if(yut_result == 4 || yut_result == 5) {
+                 throw_chance++;
+              }
+              
+              show_yut();
+              String throwResult = yut_img_name[yut.get(yut.size()-1)];
+              mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
+           }
+         
+          
+          //Æ¯Á¤ À· ´øÁö±â ¹öÆ°
+          for(int i=0; i<6; i++) {
+              if(e.getSource()==mainboard.testThrowYutBtns[i] && throw_chance > 0) {
+                throw_chance--;
+                init_throw = true;
+                
+                 yut.add(i);
+
+                 if(i == 4 || i == 5) {
+                    throw_chance ++;
+                 }
+
+                 show_yut();
+                 String throwResult = yut_img_name[yut.get(yut.size()-1)];
+                 mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
+                 break;
+              }
+          }
+          
+          
+         //»õ·Î¿î ¸» Ãß°¡ ¹öÆ°
+        for(int i=0; i<player_num; i++) {
+            if(e.getSource()==mainboard.btnPlayerWait[turn] && yut.size() > 0 && init_throw == true && game.getRemainHorse(turn) > 0) {
                //HorseSet horseset = new HorseSet(turn, new Horse(turn));
                game.destination(-1, -1, yut);
                show_possible_Mals();
+               selected = true;
             }
          }
          
-         
-         
-         if(e.getSource()==mainboard.ramdomThrowYutBtn && throw_chance > 0) {
-            int yut_result = model.Yut.throwYut();
-            move_chance++;
-            yut.add(yut_result);
-            
-            if(yut_result == 4 || yut_result == 5) {
-               throw_chance ++;
-            }
-            else {
-               throw_chance --;
-            }
-            
-            for(int i=0; i<yut.size(); i++) {
-            
-               String throwResult = yut_img_name[yut.get(i)];//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-               mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
-               yut_string = yut_string + ' ' +  yut_name[yut.get(i)];
-            }
-            mainboard.resultYutTextLbl.setText(yut_string);
-         }
-         
-         
-         
-         for(int i=0; i<6; i++) {
-            if(e.getSource()==mainboard.testThrowYutBtns[i] && throw_chance > 0) {
-               move_chance++;
-               yut.add(i);
-               if(i == 4 || i == 5) {
-                  throw_chance ++;
-               }
-               else {
-                  throw_chance --;
-               }
-               
-               for(int j=0; j<yut.size(); j++) {
-                  String throwResult = yut_img_name[yut.get(j)];
-                  mainboard.resultYutImageLbl.setIcon(new ImageIcon(throwResult));
-                  yut_string = yut_string + ' ' + yut_name[i];
-               }
-               mainboard.resultYutTextLbl.setText(yut_string);
-            }
-         }
-         
-         OUT:
+        
+        
+        //º¸µå Å¬¸¯
+        OUT:
          for(int i=0; i<7; i++) {
             for(int j=0; j<7; j++) {
-               if(e.getSource() == mainboard.pbtn[i][j]) {
-                  game.location(turn);
-                  show_now_Mals();
+               if(e.getSource() == mainboard.pbtn[i][j] && init_throw == true) {
 
-                  
-                  for(int k=0; k<game.get_location_i().size(); k++) {
-                     if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k) && selected%2 == 0) {
-                        show_now_Mals();
-                        game.destination(i, j, yut);
-                        temp_idx_i = i;
-                        temp_idx_j = j;
-                        show_possible_Mals();
-                        selected++;
-                     }
+                  game.location(turn);
+                 show_now_Mals();
+
+                  //1. ÀÚ±â ÆÀ¸» (¿òÁ÷ÀÌ±âÀü) Å¬¸¯
+                  if(selected == false) {
                      
-                     else if(selected %2 == 1) {
-                        for(int m=0; m<game.get_destination_i().size(); m++) {
-                           if(i==game.get_destination_i().get(m) && j==game.get_destination_j().get(m) && selected%2 == 1){
-                              move_chance--;
-                              if(game.move(turn, game.getHorseSet(temp_idx_i, temp_idx_j), i, j)==1) {
-                                 throw_chance++;
-                                 move_chance++;
-                              }
-                              
-                              //ÅÏ ³Ñ±è
-                              if(throw_chance < 1 && move_chance < 1) {
-                                 selected= 0;
-                                 show_now_Mals();
-                                 throw_chance = 1;
-                                 turn = game.turn(turn);
-                                 yut_string = "";
-                                 break OUT;
-                              }
-                           }
+                     for(int k=0; k<game.get_location_i().size(); k++) {
+
+                        if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k)) {
+
+                          selected = true;
+                          show_now_Mals();
+                           game.destination(i, j, yut);
+
+                           temp_idx_i = i;
+                           temp_idx_j = j;
+                           show_possible_Mals();
+                             break OUT;
                         }
-                     }
+                     }   
+                  }
+                  
+                  if(selected == true) {
                      
-                     
-                     else if(i==game.get_location_i().get(k) && j == game.get_location_j().get(k) && selected%2 == 1) {
-                        
-                        show_now_Mals();
-                        game.destination(i, j, yut);
-                        temp_idx_i = i;
-                        temp_idx_j = j;
-                        show_possible_Mals();
-                        selected = 1;
-                     }
+                    for(int m=0; m<game.get_destination_i().size(); m++) {
+                       
+                       if(i==game.get_destination_i().get(m) && j==game.get_destination_j().get(m)){
+                          int used_yut = game.get_yut().get(m);
+                          yut.remove(new Integer(used_yut));
+                          show_yut();
+                          System.out.println(used_yut);
+                          selected = false;
+                          
+                          for(int a=0; a<yut.size(); a++) {
+                              System.out.println("À· ¹Þ°í Á¤º¸13: "+yut.get(a));
+                           }
+                          
+                          
+                          //¿òÁ÷ÀÎ´Ù
+                          if(game.move(turn, game.getHorseSet(temp_idx_i, temp_idx_j), i, j)==1) {
+                             throw_chance++;
+                          }
+                          
+                          
+                          game.location(turn);
+                          show_now_Mals();
+                          //°ÔÀÓ ³¡³µ´ÂÁö È®ÀÎ
+                          check_game();
+                          
+                          //ÅÏ Ã¼Å©
+                          System.out.println("´øÁú Âù½º: " + throw_chance);
+                          System.out.println("³²Àº À·ÀÇ °³¼ö: " + yut.size());
+                          if(check_turn()) {
+                             this.turn = game.turn(turn);
+                             turn_change();
+                          }
+                          else {
+                            show_player_horses();
+                          }
+                         break OUT;
+                       }
+                       
+                       else {
+                          selected = false;
+                          show_now_Mals();
+                          break OUT;
+                       }
+                    }
+                    
                   }
                }
             }
-         }      
-      }      
+         }
+      }
+   }
+   
+   //Àµ º¸¿©ÁÖ±â
+   public void show_yut() {
+      yut_string = "";
+      for(int i=0; i<yut.size(); i++) {
+         if(yut.size() > 0) {
+            yut_string = yut_string + yut_name[yut.get(i)];
+         }
+      }
+       mainboard.resultYutTextLbl.setText(yut_string);
+   }
+   
+   //ÅÏ ³Ñ±è
+   public void turn_change() {
+      game.location(turn);
+      show_now_Mals();
+      show_player_horses();
+      mainboard.nowTurnlbl.setText(Integer.toString(turn));
+        show_yut();
+      init_throw = false;
+      throw_chance = 1;
+      yut_string = "";
+      selected = false;
+      yut = new ArrayList<Integer>();
+      temp_idx_i = 0;
+      temp_idx_j = 0;
+      mainboard.resultYutImageLbl.setIcon(null);
    }
    
    
+   //ÅÏ Ã¼Å©
+   public boolean check_turn() {
+      if(throw_chance < 1 && yut.size() < 1) {
+         return true;
+      }
+      else
+         return false;
+   }
    
+   //°ÔÀÓ ³¡³µ´ÂÁö Ã¼Å©
+   public void check_game() {
+      if(game.end(turn)==1) {
+         end_game(turn);
+      }
+         
+   }
    
+   //°ÔÀÓ ³¡³¿
+   public void end_game(int turn) {
+      game_winner = turn;
+      mainboard.setVisible(false);
+      mainboard.dispose();
+      play_game = 2;
+      resultpage = new ResultPage(this, turn);
+   }
+   
+   //ÇöÀç ÅÏÀÇ ÇÃ·¹ÀÌ¾îÀÇ ¸»ÀÇ À§Ä¡ ¾Ë·ÁÁÜ
+   public void show_player_horses() {
+      for(int m=0; m<game.get_location_i().size(); m++) {
+        int x = game.get_location_i().get(m);
+         int y = game.get_location_j().get(m);
+         mainboard.pbtn[x][y].setBorder(yellow);
+      }  
+   }
+   
+   //°¥¼ö ÀÖ´Â ¸»  À§Ä¡ º¸¿©ÁÜ
    public void show_possible_Mals() {
       for(int m=0; m<game.get_destination_i().size(); m++) {
-         int x = game.get_destination_i().get(m);
+        int x = game.get_destination_i().get(m);
          int y = game.get_destination_j().get(m);
          mainboard.pbtn[x][y].setBorder(red);
       }
    }
       
-
+   //ÇöÀç ¸»µé º¸¿©ÁÜ
    public void show_now_Mals() {
       horseBoard = game.getBoard();
       for(int i=0; i<7; i++) {
@@ -222,17 +324,6 @@ public class Controller implements ActionListener{
          }
       }
    }
-   
-//   public void end_game(int turn) {
-//      if(game.get_game_status() == 1) {
-//         game_winner = turn;
-//         mainboard.setVisible(false);
-//         mainboard.dispose();
-//         play_game = 2;
-//         resultpage = new ResultPage(this, turn);
-//         
-//      }
-//   }
 
    public static void main(String[] args) {
       new Controller();
@@ -240,4 +331,3 @@ public class Controller implements ActionListener{
 }   
       
 
- 
