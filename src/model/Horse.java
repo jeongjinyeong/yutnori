@@ -2,8 +2,6 @@ package model;
 
 public class Horse {
 	private int player;
-//	private int i;
-//	private int j;
 	
 	public Horse() {}
 	

@@ -35,9 +35,8 @@ public class HorseSet {
 		i = horseSet.get_i();
 		j = horseSet.get_j();
 	}
-	
-//	���ο� HorseSet�� ���� ��� -> player �� �� ������ �߰�(�� ����), �ٸ��� ��ü
-//	ArrayList���� ��ü ������ ��� deep copy�� �Ͽ��� ���� ��ü�� �νĵǹǷ� ���� �����ڸ� ���� ��������� �Ѵ�.
+
+	//현재 HorseSet에 새로운 HorseSet이 들어온 경우 플레이어 비교 후 처리
 	public void newHorse(HorseSet f) {
 		if(player==f.getPlayer()) {
 			for(int i=0; i<f.getHorses().size() ;i++) {
@@ -70,7 +69,6 @@ public class HorseSet {
 		return this.horses;
 	}
 	
-	//�ε��� ���� ��ȯ�� board���� ��ġ �̵�
 	public int get_i() {
 		return i; 
 	}
