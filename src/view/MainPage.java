@@ -42,7 +42,7 @@ public class MainPage extends JFrame {
 		
 		control = controller;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1070, 750);
+		setBounds(400, 100, 1070, 750);
 		mainPage = new JPanel();
 		mainPage.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainPage);
@@ -275,7 +275,7 @@ public class MainPage extends JFrame {
 			btnPlayerWait[i].setContentAreaFilled(false);
 
 
-			lblplayerFin[i] = new JLabel("player"+i+"Fin");
+			lblplayerFin[i] = new JLabel("");
 			lblplayerFin[i].setBounds(99, 28, 70, 64);
 			players[i].add(lblplayerFin[i]);
 		}

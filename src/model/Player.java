@@ -5,19 +5,16 @@ import java.util.ArrayList;
 public class Player {
 	private int player;
 	private int horseNum;
-	private int throwChance;
 	private ArrayList<HorseSet> horseSets = new ArrayList<HorseSet>();
 	
 	public Player() {}
 	
 	public Player(int player) {
 		this.player = player;
-		throwChance = 1;
 	}
 	
 	public Player(int player, int num) {
 		this.player = player;
-		throwChance = 1;
 		horseNum = num;
 	}
 	

@@ -86,12 +86,17 @@ public class Game {
                }
               else if(index_j == 6 && index_i > 0) {
                  for(int i=0; i<yut.get(y); i++) {
-                    if(index_i>0) {
+                    if(index_i>0 && index_i<6) {
                        if(index_i==4)
                           index_i--;
                        index_i--;
                        yutValue++;
                     }
+                    else if(index_i>=6 && yut.get(y)!=0) {
+                      index_i = 7;
+                      index_j = 7;
+                      yutValue++;
+                   }
                     else {
                        if(index_j==4)
                           index_j--;
@@ -164,7 +169,7 @@ public class Game {
                     if(index_j==2)
                        index_j++;
                     index_j++;
-                    if(index_i>=6 && index_j>6) {
+                    if(index_i==6 && index_j>6) {
                        index_i = 7;
                        index_j = 7;
                     }
@@ -194,8 +199,6 @@ public class Game {
                   index_i--;
                }
                else if(index_j==0 && index_i==6) {
-                  destination_i.add(index_i--);
-                  destination_j.add(index_j);
                   index_i--;
                   index_j++;
                }
@@ -205,8 +208,6 @@ public class Game {
                   index_j--;
                }
                else if(index_i==6 && index_j==6) {
-                  destination_i.add(index_i--);
-                  destination_j.add(index_j--);
                   index_j--;
                }
                else if((index_i==1 && index_j==1) || (index_i==2 && index_j==2) || (index_i==4 && index_j==4) || (index_i==5 && index_j==5)) {
@@ -233,13 +234,6 @@ public class Game {
    
    public int getRemainHorse(int player) {
       return this.player.get(player).getHorseNum();
-   }
-   
-   public int end(int player) {
-      if(this.player.get(player).getHorseSets() == null && this.player.get(player).getHorseNum() == 0) {
-         return 1;
-      }
-      return 0;
    }
    
    public int move(int player, HorseSet horseSet, int destination_i, int destination_j) { //horseSet은 움직일 말을 매개변수로 전달, destination은 이동할 지점의 index
@@ -297,38 +291,11 @@ public class Game {
          //throwChance를 위한 chance변수 반환
       }
       else {
-       if(horseSet.get_i()!=-1)
-          board[horseSet.get_i()][horseSet.get_j()] = null;
-       tempPlayer.getHorseSets().remove(horseSet);
+         if(horseSet.get_i()!=-1)
+            board[horseSet.get_i()][horseSet.get_j()] = null;
+         tempPlayer.getHorseSets().remove(horseSet);
       }  
       return chance;
-      
-      //tempPlayer.getHorseSets().set(tempPlayer.getHorseSets().indexOf(horseSet), this.horseSet);
-//      //플레이어의 horseSets배열에서 현재 매개변수로 들어온 horseSet의 값 변경
-//      for(int i=0; i<tempPlayer.getHorseSets().size(); i++) {
-//         if(tempPlayer.getHorseSets().get(i)!=horseSet)
-//            //index가 같은 horseSet이 존재한다면 하나로 합쳐준다.0
-//            if(tempPlayer.getHorseSets().get(i).get_i()==horseSet.get_i()&&tempPlayer.getHorseSets().get(i).get_j()==horseSet.get_j()) {
-//               tempPlayer.getHorseSets().get(i).newHorse(horseSet);
-//            }
-//      }
-      
-      //현재 턴의 player의 horseSets배열 업데이트
-//      tempPlayer.getHorseSets().set(tempPlayer.getHorseSets().indexOf(horseSet), this.horseSet);
-//      for(int i=0; i<tempPlayer.getHorseSets().size(); i++) {
-//         for(int j=0; j<tempPlayer.getHorseSets().size(); j++) {
-//            if(tempPlayer.getHorseSets().get(i).get_i()==tempPlayer.getHorseSets().get(j).get_i()&&tempPlayer.getHorseSets().get(i).get_j()==tempPlayer.getHorseSets().get(j).get_j()) {
-//               tempPlayer.getHorseSets().get(i).newHorse(tempPlayer.getHorseSets().get(j));
-//               tempPlayer.getHorseSets().remove(tempPlayer.getHorseSets().get(j));
-//            }
-//         }
-//      }
-      
-      //상대방 말이 destination에 있는 경우 해당 player의 horseSets배열 업데이트
-      
-      //board 상에서 기존 위치에 남아 있는 말 제거
-//      this.player.get(horseSet.getPlayer()).getHorseSets().remove(horseSet);
-      //말이 새로 출발하는 경우 현재 턴의 player의 horseNum을 하나 줄여줘야 한다.
    }
    
    public HorseSet[][] getBoard(){

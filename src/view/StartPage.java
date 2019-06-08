@@ -33,22 +33,22 @@ public class StartPage extends JFrame{
 	public JComboBox horseCombo;
 	public StartPage(Controller controller) {
 		control = controller;
-		String[] playerStringSet = {"2¸í","3¸í","4¸í"};
-		String[] horseStringSet = {"2°³","3°³","4°³","5°³"};
+		String[] playerStringSet = {"2ëª…","3ëª…","4ëª…"};
+		String[] horseStringSet = {"2ê°œ","3ê°œ","4ê°œ","5ê°œ"};
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 360);
+		setBounds(600, 300, 500, 360);
 		startPane = new JPanel();
 		startPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(startPane);
 		startPane.setLayout(null);
-		JLabel label_2 = new JLabel("À·³îÀÌ");
+		JLabel label_2 = new JLabel("ìœ·ë†€ì´");
 		label_2.setBounds(230, 24, 74, 18);
 		startPane.add(label_2);
-		JLabel label = new JLabel("½ÃÀÛÀÎ¿ø");
+		JLabel label = new JLabel("ì‹œì‘ì¸ì›");
 		label.setBounds(150, 83, 62, 18);
 		startPane.add(label);
-		JLabel label_1 = new JLabel("¸»°¹¼ö");
+		JLabel label_1 = new JLabel("ë§ ê°¯ìˆ˜");
 		label_1.setBounds(150, 168, 62, 18);
 		startPane.add(label_1);
 
@@ -66,7 +66,7 @@ public class StartPage extends JFrame{
 		playerCombo.getSelectedItem().toString();
 		horseCombo.getSelectedItem().toString(); 
 		
-		startGame = new JButton("°ÔÀÓ½ÃÀÛ");
+		startGame = new JButton("ê²Œì„ì‹œì‘");
 		startGame.setBounds(152, 217, 204, 39);
 		startPane.add(startGame);
 		startGame.addActionListener(control);
